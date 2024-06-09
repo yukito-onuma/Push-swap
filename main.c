@@ -45,7 +45,7 @@ bool is_valid_input(char *str)
 {
 	while (*str)
 	{
-		if (!isdigit(*str))
+		if (!isdigit(*str)) // 本家のisdigit使ってるから注意
 			return false;
 		str++;
 	}
