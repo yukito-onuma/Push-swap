@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/09 16:01:54 by yonuma            #+#    #+#              #
-#    Updated: 2024/06/16 12:42:40 by marvin           ###   ########.fr        #
+#    Updated: 2024/06/16 14:40:15 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = ft_atoi.c \
 	   ./printf/return_ten.c \
 	   ./printf/return_base.c \
 	   push_swap.c \
-	   main.c
+	   main.c \
 	   
 # BONUS = 
 	   
