@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 14:05:36 by yonuma            #+#    #+#             */
-/*   Updated: 2024/06/09 16:14:23 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:28:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
 void	push_swap(int n)
 {
-	n = 5;
+	n = n;
 }
