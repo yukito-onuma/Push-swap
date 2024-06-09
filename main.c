@@ -6,11 +6,20 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:43:10 by yonuma            #+#    #+#             */
-/*   Updated: 2024/06/16 13:09:23 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/16 14:10:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 #include <stdbool.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int print_error(void)
+{
+	ft_printf("Error\n");
+	return (0);
+}
 
 bool check_duplicates(int *arr, int len)
 {
@@ -32,32 +41,34 @@ bool check_duplicates(int *arr, int len)
 	return true;
 }
 
+bool is_valid_input(char *str)
+{
+	while (*str)
+	{
+		if (!isdigit(*str))
+			return false;
+		str++;
+	}
+	return true;
+}
+
 int	main(int argc, char **argv)
 {
 	int	i;
 	int *args = malloc((argc - 1) * sizeof(int));
 
 	if (argc < 2)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
+		return (print_error());
 	i = 0;
 	while (argv[i + 1])
 	{
-		if (ft_atoi(argv[i + 1]) == -1)
-		{
-			ft_printf("Error\n");
-			return (0);
-		}
+		if (!is_valid_input(argv[i + 1]) || ft_atoi(argv[i + 1]) == -1)
+			return (print_error());
 		args[i] = ft_atoi(argv[i + 1]);
 		i++;
 	}
 	if (!check_duplicates(args, argc - 1))
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
+		return (print_error());
 	i = 0;
 	while (argv[i + 1])
 	{
