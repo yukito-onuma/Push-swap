@@ -57,8 +57,6 @@ int	main(int argc, char **argv)
 	int	i;
 	int *args = malloc((argc - 1) * sizeof(int));
 
-	if (argc < 2)
-		return (print_error());
 	i = 0;
 	while (argv[i + 1])
 	{
