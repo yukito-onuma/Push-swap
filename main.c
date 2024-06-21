@@ -70,7 +70,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (argv[i + 1])
 	{
-		push_swap(ft_atoi(argv[i + 1]));
+		push_stack(ft_atoi(argv[i + 1]), argc);
 		i++;
 	}
 	free(args);

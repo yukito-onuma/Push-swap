@@ -14,5 +14,5 @@
 
 void	push_swap(int n)
 {
-	n = n;
+	
 }

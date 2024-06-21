@@ -13,7 +13,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap.a
-SRCS = ft_atoi.c \
+SRCS = ./utils/ft_atoi.c \
 	   ./printf/ft_printf.c \
 	   ./printf/ft_utils.c \
 	   ./printf/print_unsigned_int.c \
