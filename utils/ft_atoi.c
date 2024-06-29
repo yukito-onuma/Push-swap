@@ -6,62 +6,60 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:00:21 by marvin            #+#    #+#             */
-/*   Updated: 2024/06/09 18:43:55 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/30 15:47:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <limits.h>
+#include <stdio.h>
+#include <stdint.h>
 
-static long	convert_to_long(const char *str, int sign)
+static size_t	ft_strlen_n(const char *str)
 {
-	long	result;
+	size_t	i;
 
-	result = -1;
-	while ('0' <= *str && *str <= '9')
-	{
-		if ((result > LONG_MAX / 10) || (result == LONG_MAX / 10 && (*str
-					- '0') > 7))
-		{
-			if (sign == 1)
-				return ((int)LONG_MAX);
-			else
-				return ((int)LONG_MIN);
-		}
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	return (result * sign);
+	i = 0;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		i ++;
+	return (i);
 }
 
 int	ft_atoi(const char *str)
 {
-	int	sign;
-	int	result;
+	uint64_t	re;
+	int			sign;
+	int			i;
 
+	re = 0;
 	sign = 1;
-	result = -1;
-	while (*str == ' ' || (9 <= *str && *str <= 13))
-		str++;
-	if (*str == '+' || *str == '-')
+	i = 0;
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str ++;
+	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
 			sign = -1;
-		str++;
+		str ++;
 	}
-	if (sign == -1)
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		re = re * 10 + str[i++] - '0';
+	if ((ft_strlen_n(str) == 19 && *str != '0' && re > 9223372036854775807)
+		|| (ft_strlen_n(str) >= 20 && *str != '0' ))
+	{
+		if (sign == -1)
+			return (0);
 		return (-1);
-	result = (int)convert_to_long(str, sign);
-	return (result);
+	}
+	return (re * sign);
 }
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
 // int	main(void)
 // {
-// 	printf("Input: '53 d 1'\n");
-// 	printf("Original: %d\n", atoi("a"));
-// 	printf("Custom  : %d\n", ft_atoi("a"));
+// 	printf("Input: '2'\n");
+// 	printf("Original: %d\n", atoi("2"));
+// 	printf("Custom  : %d\n", ft_atoi("2"));
 // 	return (0);
 // }

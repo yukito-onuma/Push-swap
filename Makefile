@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/09 16:01:54 by yonuma            #+#    #+#              #
-#    Updated: 2024/06/16 14:40:15 by marvin           ###   ########.fr        #
+#    Updated: 2024/06/30 12:45:24 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = ./utils/ft_atoi.c \
 	   ./printf/return_str.c \
 	   ./printf/return_ten.c \
 	   ./printf/return_base.c \
+	   ./stack/push_stack.c \
 	   push_swap.c \
 	   main.c \
 	   
@@ -31,7 +32,7 @@ SRCS = ./utils/ft_atoi.c \
 	   
 OBJS = $(SRCS:.c=.o)
 OBJS_B = $(BONUS:.c=.o)
-# INCLUDES = -I includes
+INCLUDES = -I includes
 
 all : $(NAME)
 

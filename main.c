@@ -6,14 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:43:10 by yonuma            #+#    #+#             */
-/*   Updated: 2024/06/16 14:39:46 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/30 20:24:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <stdbool.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include "push_swap.h"
 
 int print_error(void)
 {
@@ -52,11 +52,22 @@ bool is_valid_input(char *str)
 	return true;
 }
 
+void	stack_init(t_stack *stack_a, t_stack *stack_b) // God !!
+{
+	stack_a->top = NULL;
+	stack_b->top = NULL;
+}
+
 int	main(int argc, char **argv)
 {
-	int	i;
-	int *args = malloc((argc - 1) * sizeof(int));
-
+	int		i;
+	int 	*args;
+	t_stack	stack_a;
+	t_stack stack_b;
+	
+	args = malloc((argc - 1) * sizeof(int));
+	if (args == NULL)
+		return (0);
 	i = 0;
 	while (argv[i + 1])
 	{
@@ -67,11 +78,13 @@ int	main(int argc, char **argv)
 	}
 	if (!check_duplicates(args, argc - 1))
 		return (print_error());
-	i = 0;
-	while (argv[i + 1])
+	i = 1;
+	stack_init(&stack_a, &stack_b);
+	while (argv[i])
 	{
-		push_stack(ft_atoi(argv[i + 1]), argc);
+		push_stack(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
+	t_node *current = stack_a.top;
 	free(args);
 }
