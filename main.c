@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:43:10 by yonuma            #+#    #+#             */
-/*   Updated: 2024/06/30 20:24:50 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/30 20:37:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,5 @@ int	main(int argc, char **argv)
 		push_stack(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
-	t_node *current = stack_a.top;
 	free(args);
 }
