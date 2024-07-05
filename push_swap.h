@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:08:16 by yonuma            #+#    #+#             */
-/*   Updated: 2024/06/30 19:03:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/05 10:57:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_stack
 
 void	push_swap(int n);
 int		ft_atoi(const char *str);
+int     ft_lstsize(t_node *lst);
 void    push_stack(t_stack *stack, int value);
 // printf
 int		ft_write_nbr(int n);

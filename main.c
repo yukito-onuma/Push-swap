@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:43:10 by yonuma            #+#    #+#             */
-/*   Updated: 2024/06/30 20:37:10 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/05 11:37:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,13 @@ int	main(int argc, char **argv)
 		push_stack(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
+	// -------------------中身確認---------------------------
+	struct s_node *ptr;
+	ptr = stack_a.top;
+	for (int i = 0; i < ft_lstsize(ptr); i++) {
+		printf("stack_a[%d]->value = %d\n", i, (ptr)->value);
+		ptr = ptr->next;
+	}
+	// -----------------------------------------------------
 	free(args);
 }

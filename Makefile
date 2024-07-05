@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/09 16:01:54 by yonuma            #+#    #+#              #
-#    Updated: 2024/06/30 12:45:24 by marvin           ###   ########.fr        #
+#    Updated: 2024/07/05 10:51:40 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap.a
 SRCS = ./utils/ft_atoi.c \
+	   ./utils/ft_lstsize.c \
 	   ./printf/ft_printf.c \
 	   ./printf/ft_utils.c \
 	   ./printf/print_unsigned_int.c \
