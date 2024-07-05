@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:43:10 by yonuma            #+#    #+#             */
-/*   Updated: 2024/07/05 11:37:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/05 17:13:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	stack_init(t_stack *stack_a, t_stack *stack_b) // God !!
 	stack_b->top = NULL;
 }
 
+// int の範囲内処理書いておく
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -93,5 +94,6 @@ int	main(int argc, char **argv)
 		ptr = ptr->next;
 	}
 	// -----------------------------------------------------
+	push_swap(&stack_a, &stack_b);
 	free(args);
 }
