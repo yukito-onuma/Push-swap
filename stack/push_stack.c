@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 07:49:15 by su_yu_            #+#    #+#             */
-/*   Updated: 2024/06/30 20:15:13 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/05 11:58:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void push_stack(t_stack *stack, int value)
     {
         new_node->prev = new_node;
 		new_node->next = new_node;
+        stack->top = new_node;
     }
     else
     {
-        new_node->next = stack->top;
         new_node->prev = stack->top->prev;
+        new_node->next = stack->top;
         stack->top->prev->next = new_node;
         stack->top->prev = new_node;
     }
-    stack->top = new_node;
 }
