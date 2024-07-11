@@ -95,5 +95,16 @@ int	main(int argc, char **argv)
 	}
 	// -----------------------------------------------------
 	push_swap(&stack_a, &stack_b);
+	// -------------------中身確認---------------------------
+	struct s_node *atr;
+	struct s_node *btr;
+	atr = stack_a.top;
+	btr = stack_b.top;
+	for (int i = 0; i < ft_lstsize(atr)+1; i++) {
+		printf("stack_a[%d]->value = %d 	stack_b[%d]->value = %d\n", i, (atr)->value, i, (btr)->value);
+		atr = atr->next;
+		btr = btr->next;
+	}
+	// -----------------------------------------------------
 	free(args);
 }

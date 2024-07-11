@@ -54,6 +54,11 @@ void    sort_3(t_stack *stack_a);
 void    sa(t_stack *stack_a);
 void    sb(t_stack *stack_b);
 void    ra(t_stack *stack_a);
+void    rb(t_stack *stack_b);
+void    rrb(t_stack *stack_b);
+void    pa(t_stack *stack_a, t_stack *stack_b);
+void    pb(t_stack *stack_a, t_stack *stack_b);
+void    choice_command(t_stack *stack_a, t_stack *stack_b);
 void    rra(t_stack *stack_a);
 
 #endif

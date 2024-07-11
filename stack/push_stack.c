@@ -24,13 +24,13 @@ void push_stack(t_stack *stack, int value)
     if (stack->top == NULL)
     {
         new_node->prev = new_node;
-		new_node->next = new_node;
+        new_node->next = new_node;
         stack->top = new_node;
     }
     else
     {
-        new_node->prev = stack->top->prev;
         new_node->next = stack->top;
+        new_node->prev = stack->top->prev;
         stack->top->prev->next = new_node;
         stack->top->prev = new_node;
     }
