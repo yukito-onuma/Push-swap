@@ -45,34 +45,6 @@ void    ss(t_stack *stack_a, t_stack *stack_b)
     sb(stack_b);
 }
 
-void    pa(t_stack *stack_a, t_stack *stack_b)
-{
-    t_node  *tmp;
-
-    if (stack_b->top)
-    {
-        tmp = stack_b->top;
-        stack_b->top = stack_b->top->next;
-        tmp->next = stack_a->top;
-        stack_a->top = tmp;
-    }
-    ft_printf("pa\n");
-}
-
-void    pb(t_stack *stack_a, t_stack *stack_b)
-{
-    t_node  *tmp;
-
-    if (stack_a->top)
-    {
-        tmp = stack_a->top;
-        stack_a->top = stack_a->top->next;
-        tmp->next = stack_b->top;
-        stack_b->top = tmp;
-    }
-    ft_printf("pb\n");
-}
-
 void    ra(t_stack *stack_a)
 {
     stack_a->top = stack_a->top->next;
@@ -91,22 +63,16 @@ void    rr(t_stack *stack_a, t_stack *stack_b)
     rb(stack_b);
 }
 
-void    rb(t_stack *stack_b)
-{
-    stack_b->top = stack_b->top->next;
-    printf("rb\n");
-}
-
 void    rra(t_stack *stack_a)
 {
     stack_a->top = stack_a->top->prev;
-    printf("rra\n");
+    ft_printf("rra\n");
 }
 
 void    rrb(t_stack *stack_b)
 {
     stack_b->top = stack_b->top->prev;
-    printf("rrb\n");
+    ft_printf("rrb\n");
 }
 
 void    pa(t_stack *stack_a, t_stack *stack_b)
@@ -127,7 +93,7 @@ void    pb(t_stack *stack_a, t_stack *stack_b)
 {
     t_node  *tmp;
 
-    tmp = stack_a->top;
+    tmp = stack_a->top;    
     stack_a->top->prev->next = stack_a->top->next;
     stack_a->top->next->prev = stack_a->top->prev;
     stack_a->top = stack_a->top->next;
@@ -146,3 +112,42 @@ void    pb(t_stack *stack_a, t_stack *stack_b)
     }
     ft_printf("pb\n");
 }
+
+
+// void    pa(t_stack *stack_a, t_stack *stack_b)
+// {
+//     t_node  *tmp;
+
+//     if (stack_b->top)
+//     {
+//         tmp = stack_b->top;
+//         stack_b->top = stack_b->top->next;
+//         tmp->next = stack_a->top;
+//         stack_a->top = tmp;
+//     }
+//     ft_printf("pa\n");
+// }
+
+// void    pb(t_stack *stack_a, t_stack *stack_b)
+// {
+//     t_node  *tmp;
+
+//     tmp = stack_a->top;
+//     stack_a->top->prev->next = stack_a->top->next;
+//     stack_a->top->next->prev = stack_a->top->prev;
+//     stack_a->top = stack_a->top->next;
+//     if (stack_b->top == NULL)
+//     {
+//         stack_b->top = tmp;
+//         stack_b->top->next = stack_b->top;
+//         stack_b->top->prev = stack_b->top;
+//     }
+//     else
+//     {
+//         tmp->next = stack_b->top;
+//         tmp->prev = stack_b->top->prev;
+//         stack_b->top->prev->next = tmp;
+//         stack_b->top->prev = tmp;
+//     }
+//     ft_printf("pb\n");
+// }
