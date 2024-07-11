@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 16:08:16 by yonuma            #+#    #+#             */
-/*   Updated: 2024/07/05 21:31:24 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/07 17:44:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ int		return_len_base(unsigned int n, char c);
 void    sort_3(t_stack *stack_a);
 void    sa(t_stack *stack_a);
 void    sb(t_stack *stack_b);
+void    ss(t_stack *stack_a, t_stack *stack_b);
+void    pa(t_stack *stack_a, t_stack *stack_b);
+void    pb(t_stack *stack_a, t_stack *stack_b);
 void    ra(t_stack *stack_a);
 void    rb(t_stack *stack_b);
 void    rrb(t_stack *stack_b);
@@ -60,5 +63,8 @@ void    pa(t_stack *stack_a, t_stack *stack_b);
 void    pb(t_stack *stack_a, t_stack *stack_b);
 void    choice_command(t_stack *stack_a, t_stack *stack_b);
 void    rra(t_stack *stack_a);
+
+int     is_empty(t_stack *stack);
+void    radix_sort(t_stack *stack_a);
 
 #endif
