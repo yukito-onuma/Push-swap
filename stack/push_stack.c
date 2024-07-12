@@ -25,6 +25,7 @@ void push_stack(t_stack *stack, int value)
     {
         new_node->prev = new_node;
 		new_node->next = new_node;
+        stack->top = new_node;
     }
     else
     {
@@ -33,5 +34,4 @@ void push_stack(t_stack *stack, int value)
         stack->top->prev->next = new_node;
         stack->top->prev = new_node;
     }
-    stack->top = new_node;
 }

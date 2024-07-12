@@ -87,12 +87,12 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	// -------------------中身確認---------------------------
-	struct s_node *ptr;
-	ptr = stack_a.top;
-	for (int i = 0; i < ft_lstsize(ptr); i++) {
-		printf("stack_a[%d]->value = %d\n", i, (ptr)->value);
-		ptr = ptr->next;
-	}
+	// struct s_node *ptr;
+	// ptr = stack_a.top;
+	// for (int i = 0; i < ft_lstsize(ptr); i++) {
+	// 	printf("stack_a[%d]->value = %d\n", i, (ptr)->value);
+	// 	ptr = ptr->next;
+	// }
 	// -----------------------------------------------------
 	push_swap(&stack_a, &stack_b);
 	// -------------------中身確認---------------------------
