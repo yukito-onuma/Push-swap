@@ -72,39 +72,82 @@ int	check_min(t_stack *stack)
 	return (min);
 }
 
+void	push_stack_b(t_stack *stack_a, t_stack *stack_b)
+{
+	int	max;
+	int	min;
+	int	ave;
+	int	number;
+
+	max = check_max(stack_a);
+	min = check_min(stack_a);
+	ave = (max + min) / 2;
+	number = 2;
+	while (number > 0)
+	{
+		while (stack_a->top == stack_a->top->next) // 間違ってる。１周するまで見る
+		{
+			if (stack_a->top->value > ave)
+				pb(stack_a, stack_b);
+		}
+
+		number --;
+	}
+}
+
+// 	今のままだと効率が悪いのでやはり何パターンか計算すべき
 void	choice_command(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max;
 	int	min;
+	int	ave;
+	//	*tmp;
 
 	max = 0;
 	min = 0;
-	while (ft_lstsize(stack_a->top) > 3)
+	//tmp = stack_a->top;
+	while (/*stack_a->top->next != tmp && */ft_lstsize(stack_a->top) > 3)
 	{
-		if (stack_a->top->value > max)
+		ave = (check_max(stack_a) + check_min(stack_a)) / 2;
+		if (stack_a->top->value >= ave)
 		{
-			while (stack_b->top && stack_b->top->value != max)
-				rb(stack_b);
-			pb(stack_a, stack_b);
-		}
-		else if (stack_a->top->value < min)
-		{
-			while (stack_b->top->value == max)
-				pb(stack_a, stack_b);
-			rb(stack_b);
-		}
-		else
-		{
-			if (stack_b->top)
+			//-------受け取ったvalueを挿入ソート-------------------------------------
+			if (stack_a->top->value > max)
 			{
-				while (!(stack_a->top->value > stack_b->top->value
-					&& stack_a->top->value < stack_b->top->prev->value))
-        				rb(stack_b);
+				while (stack_b->top && stack_b->top->value != max)
+					rb(stack_b);
+				pb(stack_a, stack_b);
 			}
-			pb(stack_a, stack_b);
+			else if (stack_a->top->value < min)
+			{
+				while (stack_b->top->value == max)
+					pb(stack_a, stack_b);
+				rb(stack_b);
+			}
+			else
+			{
+				if (stack_b->top)
+				{
+					while (!(stack_a->top->value > stack_b->top->value
+						&& stack_a->top->value < stack_b->top->prev->value))
+						{
+							if (stack_a->top->value > stack_b->top->value
+								&& stack_a->top->value < stack_b->top->prev->value)
+									break;
+							else if (stack_a->top->value > stack_b->top->value
+								&& stack_a->top->value > stack_b->top->next->value)
+									rrb(stack_b);
+							else
+								rb(stack_b);
+						}
+				}
+				pb(stack_a, stack_b);
+			}
+			max = check_max(stack_b);
+			min = check_min(stack_b);
 		}
-		max = check_max(stack_b);
-		min = check_min(stack_b);
+		ra(stack_a);
+		//------------------ここまで---------------------------------------------
 	}
 }
 
