@@ -95,20 +95,28 @@ void	push_stack_b(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
+
 // 	今のままだと効率が悪いのでやはり何パターンか計算すべき
 void	choice_command(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max;
 	int	min;
 	int	ave;
-	//	*tmp;
+	int	sa; // kakuninn
+	int	sa2; // kakuninn
 
 	max = 0;
 	min = 0;
 	//tmp = stack_a->top;
 	while (/*stack_a->top->next != tmp && */ft_lstsize(stack_a->top) > 3)
 	{
-		ave = (check_max(stack_a) + check_min(stack_a)) / 2;
+		ave = (check_max(stack_a) + check_min(stack_a)) / 4 * 3;
 		if (stack_a->top->value >= ave)
 		{
 			//-------受け取ったvalueを挿入ソート-------------------------------------
@@ -131,12 +139,11 @@ void	choice_command(t_stack *stack_a, t_stack *stack_b)
 					while (!(stack_a->top->value > stack_b->top->value
 						&& stack_a->top->value < stack_b->top->prev->value))
 						{
-							if (stack_a->top->value > stack_b->top->value
-								&& stack_a->top->value < stack_b->top->prev->value)
-									break;
-							else if (stack_a->top->value > stack_b->top->value
-								&& stack_a->top->value > stack_b->top->next->value)
-									rrb(stack_b);
+							sa = ft_abs(stack_b->top->value - stack_a->top->value);
+							sa2 = ft_abs(stack_b->top->prev->value - stack_a->top->value);
+
+							if (sa >= sa2)
+								rrb(stack_b);
 							else
 								rb(stack_b);
 						}
@@ -154,7 +161,7 @@ void	choice_command(t_stack *stack_a, t_stack *stack_b)
 void	min_start(t_stack *stack_a, int min)
 {
 	while (stack_a->top->value != min)
-		ra(stack_a);
+		rra(stack_a);
 }
 
 void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
