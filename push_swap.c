@@ -40,59 +40,40 @@ void sort_3(t_stack *stack_a)
 		rra(stack_a);
 }
 
-int	check_max(t_stack *stack)
+int check_max(t_stack *stack)
 {
-	t_node	*tmp;
-	int		max;
+    t_node 	*tmp;
+    int 	max;
 
-	tmp = stack->top;
-	max = tmp->value;
-	while (tmp->next != stack->top)
+    tmp = stack->top;
+    max = tmp->value;
+    while (1)
 	{
-		tmp = tmp->next;
 		if (max < tmp->value)
 			max = tmp->value;
+		tmp = tmp->next;
+		if (tmp == stack->top)
+			break;
 	}
-	return (max);
+    return (max);
 }
 
-int	check_min(t_stack *stack)
+int check_min(t_stack *stack)
 {
-	t_node	*tmp;
-	int		min;
+    t_node 	*tmp;
+    int 	min;
 
-	tmp = stack->top;
-	min = tmp->value;
-	while (tmp->next != stack->top)
+    tmp = stack->top;
+    min = tmp->value;
+    while (1)
 	{
-		tmp = tmp->next;
 		if (min > tmp->value)
 			min = tmp->value;
+		tmp = tmp->next;
+		if (tmp == stack->top)
+			break;
 	}
-	return (min);
-}
-
-void	push_stack_b(t_stack *stack_a, t_stack *stack_b)
-{
-	int	max;
-	int	min;
-	int	ave;
-	int	number;
-
-	max = check_max(stack_a);
-	min = check_min(stack_a);
-	ave = (max + min) / 2;
-	number = 2;
-	while (number > 0)
-	{
-		while (stack_a->top == stack_a->top->next) // 間違ってる。１周するまで見る
-		{
-			if (stack_a->top->value > ave)
-				pb(stack_a, stack_b);
-		}
-
-		number --;
-	}
+    return (min);
 }
 
 int	ft_abs(int n)
@@ -101,62 +82,6 @@ int	ft_abs(int n)
 		return (-n);
 	return (n);
 }
-
-// 	今のままだと効率が悪いのでやはり何パターンか計算すべき
-// void	choice_command(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	int	max;
-// 	int	min;
-// 	int	ave;
-// 	int	sa; // kakuninn
-// 	int	sa2; // kakuninn
-
-// 	max = 0;
-// 	min = 0;
-// 	//tmp = stack_a->top;
-// 	while (/*stack_a->top->next != tmp && */ft_lstsize(stack_a->top) > 3)
-// 	{
-// 		ave = (check_max(stack_a) + check_min(stack_a)) / 5 * 4;
-// 		if (stack_a->top->value >= ave)
-// 		{
-// 			//-------受け取ったvalueを挿入ソート-------------------------------------
-// 			if (stack_a->top->value > max)
-// 			{
-// 				while (stack_b->top && stack_b->top->value != max)
-// 					rb(stack_b);
-// 				pb(stack_a, stack_b);
-// 			}
-// 			else if (stack_a->top->value < min)
-// 			{
-// 				while (stack_b->top->value == max)
-// 					pb(stack_a, stack_b);
-// 				rb(stack_b);
-// 			}
-// 			else
-// 			{
-// 				if (stack_b->top)
-// 				{
-// 					while (!(stack_a->top->value > stack_b->top->value
-// 						&& stack_a->top->value < stack_b->top->prev->value))
-// 						{
-// 							sa = ft_abs(stack_b->top->value - stack_a->top->value);
-// 							sa2 = ft_abs(stack_b->top->prev->value - stack_a->top->value);
-
-// 							if (sa >= sa2)
-// 								rrb(stack_b);
-// 							else
-// 								rb(stack_b);
-// 						}
-// 				}
-// 				pb(stack_a, stack_b);
-// 			}
-// 			max = check_max(stack_b);
-// 			min = check_min(stack_b);
-// 		}
-// 		ra(stack_a);
-// 		//------------------ここまで---------------------------------------------
-// 	}
-// }
 
 void	min_start(t_stack *stack_a, int min)
 {
@@ -168,42 +93,46 @@ void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	min;
 	int	max;
-	int	max2;
+	int	sa; // kakuninn
+	int	sa2; // kakuninn
 
-	while (stack_b->top != NULL)
+	min = 0;
+	max = 0;
+	pa(stack_a, stack_b);
+	min = check_min(stack_a);
+	max = check_max(stack_a);
+	while (stack_b->top)
 	{
+		if (stack_b->top->value < min)
+		{
+			while (stack_a->top->value != min)
+				rra(stack_a);
+			pa(stack_a, stack_b);
+		}
+		else if (stack_a && stack_b->top->value > max)
+		{
+			while (stack_a->top->value != min)
+				ra(stack_a);
+			pa(stack_a, stack_b);
+			ra(stack_a);
+		}
+		else
+		{
+			while (!(stack_b->top->value < stack_a->top->value
+				&& stack_b->top->value > stack_a->top->prev->value))
+				{
+					sa = ft_abs(stack_a->top->value - stack_b->top->value);
+					sa2 = ft_abs(stack_a->top->prev->value - stack_b->top->value);
+					if (sa >= sa2)
+						rra(stack_a);
+					else
+						ra(stack_a);
+				}
+			pa(stack_a, stack_b);
+		}
 		min = check_min(stack_a);
 		max = check_max(stack_a);
-		max2 = check_max(stack_b);
-		while (ft_lstsize(stack_b->top) != 0)
-		{
-			while (stack_b->top->value != max2)
-				rrb(stack_b);
-			if (stack_b->top->value < min)
-			{
-				while (stack_a->top->value != min)
-					ra(stack_a);
-				pa(stack_a, stack_b);
-			}
-			else if (stack_a->top->value > max)
-			{
-				while (stack_a->top->prev->value != min)
-					rra(stack_a);
-			}
-			else
-			{
-				while ((stack_a->top->value < stack_b->top->value
-					&& stack_a->top->prev->value > stack_b->top->value)
-					|| (stack_a->top->value > stack_b->top->value
-					&& stack_a->top->prev->value > stack_b->top->value))
-						rra(stack_a);
-				pa(stack_a, stack_b);
-			}
-			min = check_min(stack_a);
-			max = check_max(stack_a);
-		}
 	}
-	min_start(stack_a, min);
 }
 
 int contains_less_than_range2(t_stack *stack, int range2) {
@@ -240,17 +169,15 @@ void digit_sort(t_stack *stack_a, t_stack *stack_b) {
         else
             rra(stack_a);
     }
-	while (ft_lstsize(stack_a->top) != 0)
+	while (stack_a->top)
 		pb(stack_a, stack_b);
-	printf("end\n");
 }
 
 void	sort_large(t_stack *stack_a, t_stack *stack_b)
 {
 	digit_sort(stack_a, stack_b);
-	// choice_command(stack_a, stack_b);
-	// sort_3(stack_a);
-	// return_stack_a(stack_a, stack_b);
+	return_stack_a(stack_a, stack_b);
+	min_start(stack_a, check_min(stack_a));
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b)
