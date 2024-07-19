@@ -206,7 +206,8 @@ void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
 	min_start(stack_a, min);
 }
 
-int contains_less_than_range2(t_stack *stack, int range2) {
+int contains_less_than_range2(t_stack *stack, int range2)
+{
     t_node *tmp;
 	
 	tmp = stack->top;
