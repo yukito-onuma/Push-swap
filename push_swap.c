@@ -96,8 +96,7 @@ void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
 	int	sa; // kakuninn
 	int	sa2; // kakuninn
 
-	min = 0;
-	max = 0;
+	rrb(stack_b);
 	pa(stack_a, stack_b);
 	rra(stack_a);
 	pa(stack_a, stack_b);
@@ -137,7 +136,8 @@ void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-int contains_less_than_range2(t_stack *stack, int range2) {
+int contains_less_than_range2(t_stack *stack, int range2)
+{
     t_node *tmp;
 	
 	tmp = stack->top;
@@ -153,9 +153,11 @@ int contains_less_than_range2(t_stack *stack, int range2) {
     return (0);
 }
 
-void digit_sort(t_stack *stack_a, t_stack *stack_b) {
+void digit_sort(t_stack *stack_a, t_stack *stack_b)
+{
     int 	range1;
     int 	range2;
+	int 	max;
 
     range1 = (check_max(stack_a) - check_min(stack_a)) / 3;
     range2 = range1 * 2;
@@ -173,6 +175,40 @@ void digit_sort(t_stack *stack_a, t_stack *stack_b) {
     }
 	while (stack_a->top)
 		pb(stack_a, stack_b);
+	max = check_max(stack_b);
+	while (stack_b->top->value >= range2)
+	{
+		if (stack_b->top->value >= (max - range2) / 2 + range2)
+			pa(stack_a, stack_b);
+		else if (stack_b->top->value < (max - range2) / 2 + range2)
+		{
+			pa(stack_a, stack_b);
+			ra(stack_a);
+		}
+	}
+	max = check_max(stack_b);
+	while (stack_b->top->value >= range1)
+	{
+		if (stack_b->top->value >= (max - range1) / 2 + range1)
+			pa(stack_a, stack_b);
+		else if (stack_b->top->value < (max - range1) / 2 + range1)
+		{
+			pa(stack_a, stack_b);
+			ra(stack_a);
+		}
+	}
+	max = check_max(stack_b);
+	while (stack_b->top)
+	{
+		if (stack_b->top->value >= max / 2)
+			pa(stack_a, stack_b);
+		else
+		{
+			pa(stack_a, stack_b);
+			ra(stack_a);
+		}
+	}
+	//sort_3(stack_a);
 }
 
 void	sort_large(t_stack *stack_a, t_stack *stack_b)
