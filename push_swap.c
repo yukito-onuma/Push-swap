@@ -99,6 +99,8 @@ void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
 	min = 0;
 	max = 0;
 	pa(stack_a, stack_b);
+	rra(stack_a);
+	pa(stack_a, stack_b);
 	min = check_min(stack_a);
 	max = check_max(stack_a);
 	while (stack_b->top)
