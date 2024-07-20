@@ -161,7 +161,7 @@ void	digit_sort(t_stack	*stack_a, t_stack	*stack_b)
 	size = ft_lstsize(stack_a->top);
 	while (size / partition >= 50 && partition % 2 != 0)
 	{
-		// もう寝る。発想はたくさん分割していく
+		// もう寝る。発想はたくさん分割していくyo
 	}
 }
 
