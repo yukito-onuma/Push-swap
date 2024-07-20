@@ -89,50 +89,49 @@ void	min_start(t_stack *stack_a, int min)
 		rra(stack_a);
 }
 
-void	return_stack_a(t_stack *stack_a, t_stack *stack_b)
+void	return_stack_b(t_stack *stack_a, t_stack *stack_b)
 {
 	int	min;
 	int	max;
 	int	sa; // kakuninn
 	int	sa2; // kakuninn
 
-	rrb(stack_b);
-	pa(stack_a, stack_b);
-	rra(stack_a);
-	pa(stack_a, stack_b);
-	min = check_min(stack_a);
-	max = check_max(stack_a);
-	while (stack_b->top)
+	pb(stack_a, stack_b);
+	// rrb(stack_a);
+	// pa(stack_a, stack_b);
+	min = check_min(stack_b);
+	max = check_max(stack_b);
+	while (stack_a->top)
 	{
-		if (stack_b->top->value < min)
+		if (stack_a->top->value < min)
 		{
-			while (stack_a->top->value != min)
-				rra(stack_a);
-			pa(stack_a, stack_b);
+			while (stack_b->top->value != min)
+				rrb(stack_b);
+			pb(stack_a, stack_b);
 		}
-		else if (stack_a && stack_b->top->value > max)
+		else if (stack_b && stack_a->top->value > max)
 		{
-			while (stack_a->top->value != min)
-				ra(stack_a);
-			pa(stack_a, stack_b);
-			ra(stack_a);
+			while (stack_b->top->value != min)
+				rb(stack_b);
+			pb(stack_a, stack_b);
+			rb(stack_b);
 		}
 		else
 		{
-			while (!(stack_b->top->value < stack_a->top->value
-				&& stack_b->top->value > stack_a->top->prev->value))
+			while (!(stack_a->top->value < stack_b->top->value
+				&& stack_a->top->value > stack_b->top->prev->value))
 				{
-					sa = ft_abs(stack_a->top->value - stack_b->top->value);
-					sa2 = ft_abs(stack_a->top->prev->value - stack_b->top->value);
+					sa = ft_abs(stack_b->top->value - stack_a->top->value);
+					sa2 = ft_abs(stack_b->top->prev->value - stack_a->top->value);
 					if (sa >= sa2)
-						rra(stack_a);
+						rrb(stack_b);
 					else
-						ra(stack_a);
+						rb(stack_b);
 				}
-			pa(stack_a, stack_b);
+			pb(stack_a, stack_b);
 		}
-		min = check_min(stack_a);
-		max = check_max(stack_a);
+		min = check_min(stack_b);
+		max = check_max(stack_b);
 	}
 }
 
@@ -151,6 +150,19 @@ int contains_less_than_range2(t_stack *stack, int range2)
         tmp = tmp->next;
     }
     return (0);
+}
+
+void	digit_sort(t_stack	*stack_a, t_stack	*stack_b)
+{
+	int	partition;
+	int	size;
+	
+	partition = 2;
+	size = ft_lstsize(stack_a->top);
+	while (size / partition >= 50 && partition % 2 != 0)
+	{
+		// もう寝る。発想はたくさん分割していく
+	}
 }
 
 void digit_sort(t_stack *stack_a, t_stack *stack_b)
@@ -208,14 +220,13 @@ void digit_sort(t_stack *stack_a, t_stack *stack_b)
 			ra(stack_a);
 		}
 	}
-	//sort_3(stack_a);
 }
 
 void	sort_large(t_stack *stack_a, t_stack *stack_b)
 {
 	digit_sort(stack_a, stack_b);
-	return_stack_a(stack_a, stack_b);
-	min_start(stack_a, check_min(stack_a));
+	return_stack_b(stack_a, stack_b);
+	//min_start(stack_a, check_min(stack_a));
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b)
