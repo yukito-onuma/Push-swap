@@ -152,75 +152,138 @@ int contains_less_than_range2(t_stack *stack, int range2)
     return (0);
 }
 
-void	digit_sort(t_stack	*stack_a, t_stack	*stack_b)
+double	ft_ave(t_stack *stack, int size)
 {
-	int	partition;
-	int	size;
-	
-	partition = 2;
-	size = ft_lstsize(stack_a->top);
-	while (size / partition >= 50 && partition % 2 != 0)
+    double ave;
+    t_node *tmp;
+
+    tmp = stack->top;
+	ave = 0.0;
+    while (tmp != NULL)
+    {
+        ave += tmp->value / size;
+        tmp = tmp->next;
+    }
+    return (ave);
+}
+
+void	ft_partition(t_stack	*src, t_stack	*dst, char	alpha, int	partition)
+{
+	double	ave;
+	int		size;
+	int		count;
+
+	size = ft_lstsize(src->top);
+	count = 0;
+	ave = ft_ave(src, size);
+	while (src->top && size / partition >= count)
 	{
-		// もう寝る。発想はたくさん分割していくyo
+		if (src->top->value >= ave)
+		{
+			if (alpha == 'a')
+				pa(src, dst);
+			else
+				pb(src, dst);
+		}
+		else
+		{
+			if (alpha == 'a')
+			{
+				pa(src, dst);
+				ra(dst);
+			}
+			else
+			{
+				pb(src, dst);
+				rb(dst);
+			}
+		}
+		count++;
 	}
 }
 
 void digit_sort(t_stack *stack_a, t_stack *stack_b)
 {
-    int 	range1;
-    int 	range2;
-	int 	max;
-
-    range1 = (check_max(stack_a) - check_min(stack_a)) / 3;
-    range2 = range1 * 2;
-    while (contains_less_than_range2(stack_a, range2))
-	{
-        if (stack_a->top->value <= range1)
+	int		partition;
+	int		size;
+	
+	partition = 2;
+	size = ft_lstsize(stack_a->top);
+	printf("\nsize = %d, partition = %d\n", size, partition);
+	while ((size / partition >= 50)
+		|| (size / partition < 50 && partition % 2 == 0)) //　最終的にstack_bに入る条件、のはず
 		{
-            pb(stack_a, stack_b);
-            rb(stack_b);
-        }
-		else if (stack_a->top->value > range1 && stack_a->top->value <= range2)
-            pb(stack_a, stack_b);
-        else
-            rra(stack_a);
-    }
-	while (stack_a->top)
-		pb(stack_a, stack_b);
-	max = check_max(stack_b);
-	while (stack_b->top->value >= range2)
-	{
-		if (stack_b->top->value >= (max - range2) / 2 + range2)
-			pa(stack_a, stack_b);
-		else if (stack_b->top->value < (max - range2) / 2 + range2)
-		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
+			if (partition % 2 == 0)
+			{
+				ft_partition(stack_a, stack_b, 'b', partition);
+				if (stack_a->top == NULL)
+					partition++;
+			}
+			else
+			{
+				ft_partition(stack_b, stack_a, 'a', partition);
+				if (stack_b->top == NULL)
+					partition++;
+			}
 		}
-	}
-	max = check_max(stack_b);
-	while (stack_b->top->value >= range1)
-	{
-		if (stack_b->top->value >= (max - range1) / 2 + range1)
-			pa(stack_a, stack_b);
-		else if (stack_b->top->value < (max - range1) / 2 + range1)
-		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
-		}
-	}
-	max = check_max(stack_b);
-	while (stack_b->top)
-	{
-		if (stack_b->top->value >= max / 2)
-			pa(stack_a, stack_b);
-		else
-		{
-			pa(stack_a, stack_b);
-			ra(stack_a);
-		}
-	}
 }
+
+// void digit_sort(t_stack *stack_a, t_stack *stack_b)
+// {
+//     int 	range1;
+//     int 	range2;
+// 	int 	max;
+
+//     range1 = (check_max(stack_a) - check_min(stack_a)) / 3;
+//     range2 = range1 * 2;
+//     while (contains_less_than_range2(stack_a, range2))
+// 	{
+//         if (stack_a->top->value <= range1)
+// 		{
+//             pb(stack_a, stack_b);
+//             rb(stack_b);
+//         }
+// 		else if (stack_a->top->value > range1 && stack_a->top->value <= range2)
+//             pb(stack_a, stack_b);
+//         else
+//             rra(stack_a);
+//     }
+// 	while (stack_a->top)
+// 		pb(stack_a, stack_b);
+// 	max = check_max(stack_b);
+// 	while (stack_b->top->value >= range2)
+// 	{
+// 		if (stack_b->top->value >= (max - range2) / 2 + range2)
+// 			pa(stack_a, stack_b);
+// 		else if (stack_b->top->value < (max - range2) / 2 + range2)
+// 		{
+// 			pa(stack_a, stack_b);
+// 			ra(stack_a);
+// 		}
+// 	}
+// 	max = check_max(stack_b);
+// 	while (stack_b->top->value >= range1)
+// 	{
+// 		if (stack_b->top->value >= (max - range1) / 2 + range1)
+// 			pa(stack_a, stack_b);
+// 		else if (stack_b->top->value < (max - range1) / 2 + range1)
+// 		{
+// 			pa(stack_a, stack_b);
+// 			ra(stack_a);
+// 		}
+// 	}
+// 	max = check_max(stack_b);
+// 	while (stack_b->top)
+// 	{
+// 		if (stack_b->top->value >= max / 2)
+// 			pa(stack_a, stack_b);
+// 		else
+// 		{
+// 			pa(stack_a, stack_b);
+// 			ra(stack_a);
+// 		}
+// 	}
+// }
 
 void	sort_large(t_stack *stack_a, t_stack *stack_b)
 {
