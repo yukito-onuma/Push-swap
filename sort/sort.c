@@ -68,34 +68,34 @@ void    rrb(t_stack *stack_b)
     ft_printf("rrb\n");
 }
 
-void    push(t_stack *stack_a, t_stack *stack_b)
+void    push(t_stack *src, t_stack *dst)
 {
     t_node  *tmp;
 
-    if (stack_a->top == NULL)
+    if (src->top == NULL)
         return;
-    tmp = stack_a->top;    
-    if (stack_a->top->next == stack_a->top)
-        stack_a->top = NULL;
+    tmp = src->top;    
+    if (src->top->next == src->top)
+        src->top = NULL;
     else
     {
-        stack_a->top->prev->next = stack_a->top->next;
-        stack_a->top->next->prev = stack_a->top->prev;
-        stack_a->top = stack_a->top->next;
+        src->top->prev->next = src->top->next;
+        src->top->next->prev = src->top->prev;
+        src->top = src->top->next;
     }
-    if (stack_b->top == NULL)
+    if (dst->top == NULL)
     {
-        stack_b->top = tmp;
-        stack_b->top->next = stack_b->top;
-        stack_b->top->prev = stack_b->top;
+        dst->top = tmp;
+        dst->top->next = dst->top;
+        dst->top->prev = dst->top;
     }
     else
     {
-        tmp->next = stack_b->top;
-        tmp->prev = stack_b->top->prev;
-        stack_b->top->prev->next = tmp;
-        stack_b->top->prev = tmp;
-        stack_b->top = tmp;
+        tmp->next = dst->top;
+        tmp->prev = dst->top->prev;
+        dst->top->prev->next = tmp;
+        dst->top->prev = tmp;
+        dst->top = tmp;
     }
 }
 
