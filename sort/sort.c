@@ -101,7 +101,7 @@ void    push(t_stack *src, t_stack *dst)
 
 void    pa(t_stack *stack_a, t_stack *stack_b)
 {
-    push(stack_b, stack_a);
+    push(stack_a, stack_b);
     ft_printf("pa\n");
 }
 
