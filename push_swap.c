@@ -171,7 +171,7 @@ double	ft_ave(t_stack *stack, int size)
 int		ft_power(int n)
 {
 	if (n == 2)
-		return (1);
+		return (2);
 	else
 		n = 2 * ft_power(n - 1);
 	return (n);
@@ -214,26 +214,29 @@ void	ft_partition(t_stack	*src, t_stack	*dst, char	alpha, int	partition)
 
 void digit_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	int		partition;
 	int		size;
+	int		partition;
+	int		power_partition;
 	
-	partition = 2;
 	size = ft_lstsize(stack_a->top);
-	while ((size / partition >= 125)
-		|| (size / partition < 125 && partition % 2 == 0)) //　最終的にstack_bに入る条件、のはず
+	partition = 2;
+	power_partition = ft_power(partition);
+	while ((size / power_partition >= 100)
+		|| (size / power_partition < 100 && partition % 2 == 0))
 		{
 			if (partition % 2 == 0)
 			{
 				ft_partition(stack_a, stack_b, 'b', partition);
 				if (stack_a->top == NULL)
-					partition++;
+					partition += 1;
 			}
 			else
 			{
 				ft_partition(stack_b, stack_a, 'a', partition);
 				if (stack_b->top == NULL)
-					partition++;
+					partition += 1;
 			}
+			power_partition = ft_power(partition);
 		}
 }
 
