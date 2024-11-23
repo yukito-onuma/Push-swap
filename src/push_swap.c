@@ -67,6 +67,77 @@ void compress_coordinates(t_stack *stack_a)
 	}
 }
 
+int get_min(t_stack *stack_a)
+{
+	t_node	*current;
+	int		min;
+
+	current = stack_a->top;
+	min = current->value;
+	while (current)
+	{
+		if (current->value < min)
+			min = current->value;
+		current = current->next;
+		if (current == stack_a->top)
+			break;
+	}
+	return (min);
+}
+
+int get_max(t_stack *stack_a)
+{
+	t_node	*current;
+	int		max;
+
+	current = stack_a->top;
+	max = current->value;
+	while (current)
+	{
+		if (current->value > max)
+			max = current->value;
+		current = current->next;
+		if (current == stack_a->top)
+			break;
+	}
+	return (max);
+}
+
+void	search_sorted1(t_stack *stack_b, int min, int max)
+{
+	t_node *current;
+	int size;
+
+	current = stack_b->top;
+	size = 0;
+	while (ft_lstsize(stack_b->top) > size)
+	{
+		if (current->value < min || current->value > max)
+		{
+			current->cost = size;
+			size = 0;
+		}
+		else
+			size++;
+		current = current->next;
+	}
+	printf("cost: %d\n", current->cost);
+}
+
+void	search_and_push(t_stack *stack_a, t_stack *stack_b)
+{
+	int min;
+	int max;
+
+	while (ft_lstsize(stack_b->top) > 0)
+	{
+		min = get_min(stack_a);
+		max = get_max(stack_a);
+		search_sorted1(stack_b, min, max);
+		// search_sorted2(stack_b, min, max);
+	}
+}
+
 void    sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 {
 	int	size;
@@ -86,10 +157,12 @@ void    sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 			}
 		}
 		else
-		{
 			ra(stack_a);
-		}
 	}
+	while (ft_lstsize(stack_a->top) > 3)
+		pb(stack_a, stack_b);
+	sort_3(stack_a);
+	search_and_push(stack_a, stack_b);
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int argc)
