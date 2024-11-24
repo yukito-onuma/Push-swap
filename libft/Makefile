@@ -14,8 +14,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 # CFLAGS += -Wunused-function
 NAME = libft.a
-SRCS = ft_memcpy.c \
-	   ft_isascii.c \
+SRCS = ft_isascii.c \
 	   ft_isprint.c \
 	   ft_memmove.c \
 	   ft_strchr.c \
@@ -57,7 +56,8 @@ SRCS = ft_memcpy.c \
 	   ft_lstdelone.c \
 	   ft_lstclear.c \
 	   ft_lstiter.c \
-	   ft_lstmap.c
+	   ft_lstmap.c \
+	#    ft_memcpy.c \
 	   
 OBJS = $(SRCS:.c=.o)
 OBJS_B = $(BONUS:.c=.o)

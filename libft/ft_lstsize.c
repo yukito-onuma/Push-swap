@@ -12,19 +12,19 @@
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_node *lst)
 {
-	int		count;
-	t_list	*tmp;
+    int		count;
+    t_node	*tmp;
 
-	count = 0;
-	tmp = lst;
-	while (tmp != NULL)
-	{
-		count++;
-		tmp = tmp->next;
-		if (tmp == lst)
-			break ;
-	}
-	return (count);
+    if (!lst)
+        return (0);
+    count = 1;
+    tmp = lst->next;
+    while (tmp && tmp != lst)
+    {
+        count++;
+        tmp = tmp->next;
+    }
+    return (count);
 }

@@ -27,6 +27,22 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+//struct
+typedef struct s_node
+{
+    int             value;
+    int             index;
+    int             cost;
+    struct s_node   *next;
+    struct s_node   *prev;
+} t_node;
+
+typedef struct s_stack
+{
+    t_node *top;
+}   t_stack;
+
+
 // libc
 int					ft_atoi(const char *str);
 void				ft_bzero(void *b, size_t len);
@@ -38,7 +54,7 @@ int					ft_isdigit(int c);
 int					ft_isprint(int c);
 void				*ft_memchr(const void *buf, int ch, size_t n);
 int					ft_memcmp(const void *buf1, const void *buf2, size_t n);
-void				*ft_memcpy(void *dest, const void *src, size_t n);
+// void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memset(void *buf, int ch, size_t n);
 char				*ft_strchr(char const *s, int c);
@@ -77,6 +93,6 @@ t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 t_list				*ft_lstnew(void *content);
-int					ft_lstsize(t_list *lst);
+int					ft_lstsize(t_node *lst);
 
 #endif
