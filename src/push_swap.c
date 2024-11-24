@@ -45,6 +45,7 @@ void compress_coordinates(t_stack *stack_a)
 	t_node 	*current;
 	t_node 	*compare;
 	int 	index;
+
 	if (!stack_a || !stack_a->top)
 		return;
 	current = stack_a->top;
@@ -103,25 +104,44 @@ int get_max(t_stack *stack_a)
 	return (max);
 }
 
-void	search_sorted1(t_stack *stack_b, int min, int max)
+void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 {
-	t_node *current;
-	int size;
+	t_node 	*current_a;
+	t_node 	*current_b;
+	int 	count;
 
-	current = stack_b->top;
-	size = 0;
-	while (ft_lstsize(stack_b->top) > size)
+	current_a = stack_a->top;
+	current_b = stack_b->top;
+	if (stack_b->top->value < min)
 	{
-		if (current->value < min || current->value > max)
-		{
-			current->cost = size;
-			size = 0;
-		}
-		else
-			size++;
-		current = current->next;
+		stack_b->top->cost = 1;
+		return ;
 	}
-	printf("cost: %d\n", current->cost);
+	else if (stack_b->top->value > max)
+	{
+		stack_b->top->cost = 2;
+		return ;
+	}
+	count = 2;
+	while (current_b->next != stack_b->top)
+	{
+		while (current_a->next != stack_a->top)
+		{
+			if (current_a->value < current_b->value && current_b->value < current_a->next->value)
+				current_b->cost = count;
+			else
+			{
+				current_a = current_a->next;
+				count++;
+			}
+			current_a = current_a->next;
+			printf("check!!\n");
+		}
+		printf("kita!!\n");
+		current_b = current_b->next;
+	}
+	stack_a->top = current_a;
+	stack_b->top = current_b;
 }
 
 void	search_and_push(t_stack *stack_a, t_stack *stack_b)
@@ -129,13 +149,11 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 	int min;
 	int max;
 
-	while (ft_lstsize(stack_b->top) > 0)
-	{
-		min = get_min(stack_a);
-		max = get_max(stack_a);
-		search_sorted1(stack_b, min, max);
-		// search_sorted2(stack_b, min, max);
-	}
+	min = get_min(stack_a);
+	max = get_max(stack_a);
+	search_sorted1(stack_a, stack_b, min, max);
+	printf("stack_b->top->cost = %d\n", stack_b->top->cost);
+	printf("stack_b->top->next->cost = %d\n", stack_b->top->next->cost);
 }
 
 void    sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
