@@ -103,54 +103,6 @@ int	get_max(t_stack *stack_a)
 	return (max);
 }
 
-// void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
-// {
-// 	t_node	*current_a;
-// 	t_node	*current_b;
-// 	int		count_a; // Aのカウント
-// 	int		count_b; // Bのカウント
-// 	int		count_loop; // 何周目のループか
-
-// 	current_b = stack_b->top;
-// 	(void)min;
-// 	(void)max;
-
-// 	count_b = 0;
-// 	count_loop = 0;
-// 	while (current_b)
-// 	{
-// 		current_a = stack_a->top;
-// 		count_a = 0;
-// 		while (current_a)
-// 		{
-// 			if (current_b->value < min || current_b->value > max)
-// 			{
-// 				current_b->cost = 1 + count_b + count_loop;
-// 				count_b = 1;
-// 				break ;
-// 			}
-// 			printf("current_a->value = %d, current_b->value: %d, current_b->cost: %d, count_a: %d, count_b: %d\n",
-// 				current_a->value, current_b->value, current_b->cost, count_a, count_b);
-// 			if (current_a->prev->value < current_b->value
-// 				&& current_b->value < current_a->value)
-// 			{
-// 				current_b->cost = count_a + count_b;
-// 				break ;
-// 			}
-// 			current_a = current_a->next;
-// 			count_a++;
-// 			if (current_a == stack_a->top)
-// 				break ;
-// 		}
-// 		count_b = 1;
-// 		count_loop++;
-// 		current_b = current_b->prev;
-// 		if (current_b == stack_b->top)
-// 			break;
-// 	}
-// 	current_b = stack_b->top;
-// }
-
 void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 {
 	t_node	*current_a;
@@ -161,24 +113,28 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	current_b = stack_b->top;
 	(void)min;
 	(void)max;
-	count_b = 1;
+	count_b = 0;
 	while (current_b)
 	{
 		current_a = stack_a->top;
 		count_a = 0;
 		while (current_a)
 		{
-			printf("current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
-				current_a->value, current_b->value, current_b->cost, count_a);
 			if (current_b->value < min || current_b->value > max)
 			{
 				current_b->cost = 1 + count_b;
+				current_b->direction = 0;
+				printf("2current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
+					current_a->value, current_b->value, current_b->cost, count_a);
 				break ;
 			}
 			if (current_a->prev->value < current_b->value
 				&& current_b->value < current_a->value)
 			{
-				current_b->cost = count_a + count_b;
+				current_b->cost = 1 + count_a + count_b;
+				current_b->direction = 0;
+				printf("current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
+					current_a->value, current_b->value, current_b->cost, count_a);
 				break ;
 			}
 			count_a++;
@@ -188,6 +144,62 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		}
 		count_b++;
 		current_b = current_b->next;
+		if (current_b == stack_b->top)
+			break ;
+	}
+	current_b = stack_b->top;
+}
+
+void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
+{
+	t_node	*current_a;
+	t_node	*current_b;
+	int		count_a;
+	int		count_b;
+	int		new_cost;
+
+	current_b = stack_b->top;
+	(void)min;
+	(void)max;
+	count_b = 0;
+	while (current_b)
+	{
+		current_a = stack_a->top;
+		count_a = 0;
+		while (current_a)
+		{
+			if (current_b->value < min || current_b->value > max)
+			{
+				new_cost = 1 + count_b;
+				if (current_b->cost > new_cost)
+				{
+					current_b->cost = new_cost;
+					current_b->direction = 1;
+				}
+				printf("4-2current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
+					current_a->value, current_b->value, current_b->cost, count_a);
+				break ;
+			}
+			if (current_a->prev->value < current_b->value
+				&& current_b->value < current_a->value)
+			{
+				new_cost = 1 + count_a + count_b;
+				if (current_b->cost > new_cost)
+				{
+					current_b->cost = new_cost;
+					current_b->direction = 1;
+				}
+				printf("4-current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
+					current_a->value, current_b->value, current_b->cost, count_a);
+				break ;
+			}
+			count_a++;
+			current_a = current_a->next;
+			if (current_a == stack_a->top)
+				break ;
+		}
+		count_b++;
+		current_b = current_b->prev;
 		if (current_b == stack_b->top)
 			break ;
 	}
@@ -229,7 +241,7 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 	while (ft_lstsize(stack_b->top) > i)
 	{
 		search_sorted1(stack_a, stack_b, min, max);
-		// search_sorted2(stack_a, stack_b, min, max);
+		search_sorted2(stack_a, stack_b, min, max);
 		// minimum_cost(stack_a, stack_b);
 		i++;
 	}
