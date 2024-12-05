@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/11/24 21:27:05 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/05 18:39:12 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,6 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 			{
 				current_b->cost = 1 + count_a + count_b;
 				current_b->direction = 0;
-				// printf("current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
-				// 	current_a->value, current_b->value, current_b->cost, count_a);
 				break ;
 			}
 			count_a++;
@@ -176,8 +174,6 @@ void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
 					current_b->cost = new_cost;
 					current_b->direction = 1;
 				}
-				// printf("4-2current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
-				// 	current_a->value, current_b->value, current_b->cost, count_b);
 				break ;
 			}
 			if (current_a->prev->value < current_b->value
@@ -189,12 +185,114 @@ void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
 					current_b->cost = new_cost;
 					current_b->direction = 1;
 				}
-				// printf("4-current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
-				// 	current_a->value, current_b->value, current_b->cost, count_a);
 				break ;
 			}
 			count_a++;
 			current_a = current_a->next;
+			if (current_a == stack_a->top)
+				break ;
+		}
+		count_b++;
+		current_b = current_b->prev;
+		if (current_b == stack_b->top)
+			break ;
+	}
+	current_b = stack_b->top;
+}
+
+void	search_sorted3(t_stack *stack_a, t_stack *stack_b, int min, int max)
+{
+	t_node	*current_a;
+	t_node	*current_b;
+	int		count_a;
+	int		count_b;
+	int		new_cost;
+
+	current_b = stack_b->top;
+	(void)min;
+	(void)max;
+	count_b = 0;
+	while (current_b)
+	{
+		current_a = stack_a->top;
+		count_a = 0;
+		while (current_a)
+		{
+			if (current_b->value < min || current_b->value > max)
+			{
+				new_cost = 1 + count_b;
+				if (current_b->cost > new_cost)
+				{
+					current_b->cost = new_cost;
+					current_b->direction = 1;
+				}
+				break ;
+			}
+			if (current_a->prev->value < current_b->value
+				&& current_b->value < current_a->value)
+			{
+				new_cost = 1 + count_a + count_b;
+				if (current_b->cost > new_cost)
+				{
+					current_b->cost = new_cost;
+					current_b->direction = 0;
+				}
+				break ;
+			}
+			count_a++;
+			current_a = current_a->prev;
+			if (current_a == stack_a->top)
+				break ;
+		}
+		count_b++;
+		current_b = current_b->next;
+		if (current_b == stack_b->top)
+			break ;
+	}
+	current_b = stack_b->top;
+}
+
+void	search_sorted4(t_stack *stack_a, t_stack *stack_b, int min, int max)
+{
+	t_node	*current_a;
+	t_node	*current_b;
+	int		count_a;
+	int		count_b;
+	int		new_cost;
+
+	current_b = stack_b->top;
+	(void)min;
+	(void)max;
+	count_b = 0;
+	while (current_b)
+	{
+		current_a = stack_a->top;
+		count_a = 0;
+		while (current_a)
+		{
+			if (current_b->value < min || current_b->value > max)
+			{
+				new_cost = 1 + count_b;
+				if (current_b->cost > new_cost)
+				{
+					current_b->cost = new_cost;
+					current_b->direction = 1;
+				}
+				break ;
+			}
+			if (current_a->prev->value < current_b->value
+				&& current_b->value < current_a->value)
+			{
+				new_cost = 1 + count_a + count_b;
+				if (current_b->cost > new_cost)
+				{
+					current_b->cost = new_cost;
+					current_b->direction = 1;
+				}
+				break ;
+			}
+			count_a++;
+			current_a = current_a->prev;
 			if (current_a == stack_a->top)
 				break ;
 		}
@@ -211,41 +309,44 @@ void	rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max, int min)
 	int		count;
 	int		size;
 	int		i;
+	t_node	*current;
 
 	size = ft_lstsize(stack_a->top);
 	count = 0;
-	if (stack_b->top->value < min || max < stack_b->top->index)
+	current = stack_a->top;
+
+	if (stack_b->top->value < min || max < stack_b->top->value)
 	{
-		if (stack_b->top->value > max)
+		if (stack_b->top->value < min)
 		{
+			while (stack_a->top->value != min)
+				ra(stack_a);
 			pa(stack_b, stack_a);
-			ra(stack_a);
 		}
 		else
 		{
-			while (stack_a->top->prev->value != max)
+			while (stack_a->top->value != min)
 				ra(stack_a);
-			printf("stack_a->prev: %d, max: %d\n", stack_a->top->prev->value, max);
 			pa(stack_b, stack_a);
+			ra(stack_a);
 		}
 		return ;
 	}
 	i = 0;
 	while (size > i)
 	{
-		if (stack_a->top->prev->index < stack_b->top->index && stack_b->top->index < stack_a->top->index)
+		if (current->prev->value < stack_b->top->value && stack_b->top->value < current->value)
 		{
 			if (count < size / 2)
-				ra(stack_a);
+				while (count-- > 0)
+					ra(stack_a);
 			else
-				rra(stack_a);
-			break;
+				while (count++ < size)
+					rra(stack_a);
+			break ;
 		}
-		else
-		{
-			count++;
-		}
-		stack_a->top = stack_a->top->next;
+		count++;
+		current = current->next;
 		i++;
 	}
 	pa(stack_b, stack_a);
@@ -275,7 +376,6 @@ void	minimum_cost(t_stack *stack_b)
 		else
 			rrb(stack_b);
 	}
-	// printf("min_cost_node->value: %d\n", min_cost_node->value);
 }
 
 void	init_cost(t_stack *stack_b)
@@ -310,13 +410,20 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 		init_cost(stack_b);
 		search_sorted1(stack_a, stack_b, min, max);
 		search_sorted2(stack_a, stack_b, min, max);
+		search_sorted3(stack_a, stack_b, min, max);
+		search_sorted4(stack_a, stack_b, min, max);
 		minimum_cost(stack_b);
 		min = get_min(stack_a);
 		max = get_max(stack_a);
 		rotate_stack_a(stack_a, stack_b, max, min);
-		// printf("size: %d, i: %d\n", size, i);
 		i++;
 	}
+}
+
+void	sort_a(t_stack *stack_a)
+{
+	while (stack_a->top->index != 0)
+		ra(stack_a);
 }
 
 void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
@@ -345,6 +452,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 		pb(stack_a, stack_b);
 	sort_3(stack_a);
 	search_and_push(stack_a, stack_b);
+	sort_a(stack_a);
 }
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int argc)
