@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/05 17:19:56 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/08 18:34:56 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,11 @@ void    rrb(t_stack *stack_b);
 void    rrr(t_stack *stack_a, t_stack *stack_b);
 void    pa(t_stack *stack_a, t_stack *stack_b);
 void    pb(t_stack *stack_a, t_stack *stack_b);
+
+//sort1
+void    search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max);
+void    search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max);
+void    search_sorted3(t_stack *stack_a, t_stack *stack_b, int min, int max);
+void    search_sorted4(t_stack *stack_a, t_stack *stack_b, int min, int max);
 
 #endif

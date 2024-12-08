@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/05 18:39:12 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/08 18:25:20 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,6 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 			{
 				current_b->cost = 1 + count_b;
 				current_b->direction = 0;
-				// printf("2current_a->value = %d, current_b->value: %d, current_b->cost: %d, count: %d\n",
-				// 	current_a->value, current_b->value, current_b->cost, count_a);
 				break ;
 			}
 			if (current_a->prev->value < current_b->value
@@ -314,7 +312,6 @@ void	rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max, int min)
 	size = ft_lstsize(stack_a->top);
 	count = 0;
 	current = stack_a->top;
-
 	if (stack_b->top->value < min || max < stack_b->top->value)
 	{
 		if (stack_b->top->value < min)
@@ -335,7 +332,8 @@ void	rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max, int min)
 	i = 0;
 	while (size > i)
 	{
-		if (current->prev->value < stack_b->top->value && stack_b->top->value < current->value)
+		if (current->prev->value < stack_b->top->value
+			&& stack_b->top->value < current->value)
 		{
 			if (count < size / 2)
 				while (count-- > 0)
@@ -398,8 +396,8 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 {
 	int	min;
 	int	max;
-	int size;
-	int i;
+	int	size;
+	int	i;
 
 	size = ft_lstsize(stack_b->top);
 	min = get_min(stack_a);
