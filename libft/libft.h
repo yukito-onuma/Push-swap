@@ -14,12 +14,11 @@
 # define LIBFT_H
 
 // # include <stdio.h>
+# include <limits.h>
+# include <stdbool.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdbool.h>
-# include <limits.h>
-# include <stdint.h>
-
 
 typedef struct s_list
 {
@@ -27,21 +26,20 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-//struct
+// struct
 typedef struct s_node
 {
-    int             value;
-    int             index;
-    int             cost;
-    struct s_node   *next;
-    struct s_node   *prev;
-} t_node;
+	int				value;
+	int				index;
+	int				cost;
+	struct s_node	*next;
+	struct s_node	*prev;
+}					t_node;
 
 typedef struct s_stack
 {
-    t_node *top;
-}   t_stack;
-
+	t_node			*top;
+}					t_stack;
 
 // libc
 int					ft_atoi(const char *str);
