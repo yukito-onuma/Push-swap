@@ -6,11 +6,11 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:30:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/14 20:20:25 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/15 17:24:25 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {

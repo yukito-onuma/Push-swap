@@ -6,7 +6,7 @@
 #    By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 18:18:07 by yonuma            #+#    #+#              #
-#    Updated: 2024/11/22 19:13:14 by yonuma           ###   ########.fr        #
+#    Updated: 2024/12/15 18:38:15 by yonuma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,13 @@ EXEC = push_swap
 SRCS = src/main.c \
        src/push_stack.c \
        src/push_swap.c \
-       src/sort.c
+	   src/rotate_stack_a.c \
+	   src/search_sorted.c \
+       src/sort.c \
+	   src/sort1.c \
+	   src/sort2.c \
+	   src/utils.c \
+	   src/utils2.c
 	   
 LIBFT_DIR = libft
 PRINTF_DIR = printf

@@ -6,11 +6,11 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/14 20:07:23 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/15 21:04:59 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	sort_3(t_stack *stack_a)
 {
@@ -47,6 +47,7 @@ void	compress_coordinates(t_stack *stack_a)
 
 	if (!stack_a || !stack_a->top)
 		return ;
+	current = stack_a->top;
 	current = stack_a->top;
 	while (current)
 	{
@@ -99,6 +100,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 
 	(void)argc;
 	compress_coordinates(stack_a);
+	print_stack(stack_a);
 	size = ft_lstsize(stack_a->top);
 	while (ft_lstsize(stack_a->top) > size / 3)
 	{

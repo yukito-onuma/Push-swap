@@ -6,11 +6,11 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:25:58 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/08 18:24:26 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/15 17:24:13 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../include/push_swap.h"
 
 void	push_stack(t_stack *stack, int value)
 {
