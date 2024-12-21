@@ -66,6 +66,7 @@ void	print_stack(t_stack *stack)
 		printf("%d, %d\n", current->value, current->index);
 		current = current->next;
 	}
+    printf("%d, %d\n", stack->top->prev->value, stack->top->prev->index);
 }
 
 int	main(int argc, char **argv)
@@ -93,7 +94,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	push_swap(&stack_a, &stack_b, argc);
-	// print_stack(&stack_a);
 	free(args);
 	return (0);
 }

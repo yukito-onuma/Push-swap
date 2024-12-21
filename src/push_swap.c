@@ -14,31 +14,30 @@
 
 void	sort_3(t_stack *stack_a)
 {
-	int	a;
-	int	b;
-	int	c;
+	int	first;
+	int	second;
+	int	third;
 
-	a = stack_a->top->index;
-	b = stack_a->top->next->index;
-	c = stack_a->top->next->next->index;
-	if (a > b && b < c && a > c)
-		ra(stack_a);
-	else if (a > b && b > c && a > c)
+	first = stack_a->top->index;
+	second = stack_a->top->next->index;
+	third = stack_a->top->next->next->index;
+
+	if ((first > second) && (second > third))
 	{
 		ra(stack_a);
 		sa(stack_a);
-	}
-	else if (a > b && b < c && a < c)
-		sa(stack_a);
-	else if (a < b && b > c && a < c)
+    }
+	else if ((first < second) && (second > third) && (first < third))
 	{
-		sa(stack_a);
-		ra(stack_a);
-	}
-	else if (a < b && b > c && a > c)
 		rra(stack_a);
-	else
-		return ;
+		sa(stack_a);
+	}
+	else if ((first > second) && (second < third) && (first < third))
+        sa(stack_a);
+	else if ((first < second) && (second > third))
+        rra(stack_a);
+	else if ((first > second) && (second < third))
+        ra(stack_a);
 }
 
 void	compress_coordinates(t_stack *stack_a)
@@ -49,7 +48,6 @@ void	compress_coordinates(t_stack *stack_a)
 
 	if (!stack_a || !stack_a->top)
 		return ;
-	current = stack_a->top;
 	current = stack_a->top;
 	while (current)
 	{
@@ -81,12 +79,10 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 	min = get_min(stack_a);
 	max = get_max(stack_a);
 	i = 0;
-	ft_printf("line: %d\n", __LINE__);
 	while (size > i)
 	{
 		init_cost(stack_b);
 		search_sorted1(stack_a, stack_b, min, max);
-		printf("line: %d\n", __LINE__);
 		search_sorted2(stack_a, stack_b, min, max);
 		search_sorted3(stack_a, stack_b, min, max);
 		search_sorted4(stack_a, stack_b, min, max);
@@ -124,7 +120,6 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 		pb(stack_a, stack_b);
 	sort_3(stack_a);
 	search_and_push(stack_a, stack_b);
-	ft_printf("line: %d\n", __LINE__);
 	sort_a(stack_a);
 }
 

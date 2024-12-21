@@ -87,5 +87,6 @@ void				calc_cost_prev(t_stack *stack_a, t_stack *stack_b, int min,
 						int max);
 void				define_ra_rra(t_stack *stack_a, t_stack *stack_b, int size);
 
+void	print_stack(t_stack *stack);
 
 #endif
