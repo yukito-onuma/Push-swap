@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/15 21:04:59 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:24:34 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	sort_3(t_stack *stack_a)
 	int	b;
 	int	c;
 
-	a = stack_a->top->value;
-	b = stack_a->top->next->value;
-	c = stack_a->top->next->next->value;
+	a = stack_a->top->index;
+	b = stack_a->top->next->index;
+	c = stack_a->top->next->next->index;
 	if (a > b && b < c && a > c)
 		ra(stack_a);
 	else if (a > b && b > c && a > c)
@@ -37,6 +37,8 @@ void	sort_3(t_stack *stack_a)
 	}
 	else if (a < b && b > c && a > c)
 		rra(stack_a);
+	else
+		return ;
 }
 
 void	compress_coordinates(t_stack *stack_a)
@@ -79,10 +81,12 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 	min = get_min(stack_a);
 	max = get_max(stack_a);
 	i = 0;
+	ft_printf("line: %d\n", __LINE__);
 	while (size > i)
 	{
 		init_cost(stack_b);
 		search_sorted1(stack_a, stack_b, min, max);
+		printf("line: %d\n", __LINE__);
 		search_sorted2(stack_a, stack_b, min, max);
 		search_sorted3(stack_a, stack_b, min, max);
 		search_sorted4(stack_a, stack_b, min, max);
@@ -100,7 +104,6 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 
 	(void)argc;
 	compress_coordinates(stack_a);
-	print_stack(stack_a);
 	size = ft_lstsize(stack_a->top);
 	while (ft_lstsize(stack_a->top) > size / 3)
 	{
@@ -121,6 +124,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 		pb(stack_a, stack_b);
 	sort_3(stack_a);
 	search_and_push(stack_a, stack_b);
+	ft_printf("line: %d\n", __LINE__);
 	sort_a(stack_a);
 }
 

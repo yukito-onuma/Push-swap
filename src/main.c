@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:13:40 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/15 21:04:44 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:42:40 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	push_swap(&stack_a, &stack_b, argc);
-	print_stack(&stack_a);
+	// print_stack(&stack_a);
 	free(args);
 	return (0);
 }
