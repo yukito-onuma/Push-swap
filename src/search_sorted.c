@@ -57,7 +57,6 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		count_a = 0;
 		while (current_a)
 		{
-			ft_printf("file:%s, line: %d\n", __FILE__ ,__LINE__);
 			process_node(current_a, current_b, count_a, count_b, min, max);
 			count_a++;
 			current_a = current_a->next;
@@ -68,10 +67,8 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		current_b = current_b->next;
 		if (current_b == stack_b->top)
 			break ;
-		ft_printf("file:%s, line: %d\n", __FILE__ ,__LINE__);
 	}
 	current_a = stack_a->top;
-	ft_printf("file:%s, line: %d\n", __FILE__ ,__LINE__);
 	current_b = stack_b->top;
 }
 
@@ -128,11 +125,11 @@ void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
 void	process_node3(t_node *current_a, t_node *current_b, int count_a, int count_b, int min, int max)
 {
 	int new_cost;
-	t_node *tmp;
+//	t_node *tmp;
 
 	if (current_b->index < min || current_b->index > max)
 	{
-		tmp = current_a;
+//		tmp = current_a;
 		while (current_a->index != min)
 		{
 			current_a = current_a->next;

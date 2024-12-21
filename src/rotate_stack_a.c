@@ -28,10 +28,10 @@ void	define_ra_rra(t_stack *stack_a, t_stack *stack_b, int size)
 		{
 			if (count < size / 2)
 				while (count-- > 0)
-					ra(stack_a);
+                    ra(stack_a);
 			else
 				while (count++ < size)
-					rra(stack_a);
+                    rra(stack_a);
 			break ;
 		}
 		count++;
@@ -43,22 +43,20 @@ void	define_ra_rra(t_stack *stack_a, t_stack *stack_b, int size)
 void	rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max, int min)
 {
 	int		size;
-	t_node	*current;
 
 	size = ft_lstsize(stack_a->top);
-	current = stack_a->top;
 	if (stack_b->top->index < min || max < stack_b->top->index)
 	{
 		if (stack_b->top->index < min)
 		{
 			while (stack_a->top->index != min)
-				ra(stack_a);
+                ra(stack_a);
 			pa(stack_b, stack_a);
 		}
 		else
 		{
 			while (stack_a->top->index != min)
-				ra(stack_a);
+                ra(stack_a);
 			pa(stack_b, stack_a);
 			ra(stack_a);
 		}

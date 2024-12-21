@@ -19,13 +19,13 @@ int	get_min(t_stack *stack_a)
 
 	current = stack_a->top;
 	min = current->index;
-	while (current)
+	while (1)
 	{
 		if (current->index < min)
 			min = current->index;
 		current = current->next;
 		if (current == stack_a->top)
-			break ;
+			break;
 	}
 	return (min);
 }
@@ -37,7 +37,7 @@ int	get_max(t_stack *stack_a)
 
 	current = stack_a->top;
 	max = current->index;
-	while (current)
+	while (1)
 	{
 		if (current->index > max)
 			max = current->index;
