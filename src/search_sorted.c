@@ -25,14 +25,14 @@ void	process_node(t_node *current_a, t_node *current_b, int count_a, int count_b
 {
 	int new_cost;
 
-	if (current_b->index < min || current_b->index > max)
+	if (current_b->index < min || current_b->index > max)// max の時の計算していない
 	{
 		while (current_a->index != min)
 		{
 			current_a = current_a->next;
 			count_a++;
 		}
-		new_cost = 1 + count_b;
+		new_cost = 1 + count_a + count_b;
 		update_cost(current_b, new_cost, 0);
 	}
 	else if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
@@ -76,7 +76,7 @@ void	process_node2(t_node *current_a, t_node *current_b, int count_a, int count_
 {
 	int new_cost;
 
-	if (current_b->index < min || current_b->index > max)
+	if (current_b->index < min || current_b->index > max)// max の時の計算していない
 	{
 		while (current_a->index != min)
 		{
@@ -125,17 +125,15 @@ void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
 void	process_node3(t_node *current_a, t_node *current_b, int count_a, int count_b, int min, int max)
 {
 	int new_cost;
-//	t_node *tmp;
 
-	if (current_b->index < min || current_b->index > max)
+	if (current_b->index < min || current_b->index > max) // max の時の計算していない
 	{
-//		tmp = current_a;
 		while (current_a->index != min)
 		{
 			current_a = current_a->next;
 			count_a++;
 		}
-		new_cost = 1 + count_b;
+		new_cost = 1 + count_a +count_b;
 		update_cost(current_b, new_cost, 1);
 	}
 	else if (current_a->prev->index < current_b->index && current_b->index < current_a->index)

@@ -46,8 +46,8 @@ void	compress_coordinates(t_stack *stack_a)
 	t_node	*compare;
 	int		index;
 
-	if (!stack_a || !stack_a->top)
-		return ;
+	// if (!stack_a || !stack_a->top)
+	// 	return ;
 	current = stack_a->top;
 	while (current)
 	{
