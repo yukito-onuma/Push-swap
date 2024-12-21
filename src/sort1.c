@@ -31,20 +31,29 @@ void    sa(t_stack *stack_a)
 
     stack_a->top = b;
 
-    printf("sa\n");
+    ft_printf("sa\n");
 }
 
 void	sb(t_stack *stack_b)
 {
-	t_node	*tmp;
+    t_node  *a;
+    t_node  *b;
 
-	tmp = stack_b->top;
-    stack_b->top->next = tmp;
-	stack_b->top = stack_b->top->next;
-	tmp->next = stack_b->top->next;
-	stack_b->top->next->prev = tmp;
-	stack_b->top->next = tmp;
-	tmp->prev = stack_b->top;
+    a = stack_b->top;
+    b = a->next;
+
+    a->next = b->next;
+    a->next->prev = a;
+
+    b->prev = a->prev;
+    b->prev->next = b;
+
+    b->next = a;
+    a->prev = b;
+
+    stack_b->top = b;
+
+    ft_printf("sb\n");
 }
 
 void	ss(t_stack *stack_a, t_stack *stack_b)

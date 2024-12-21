@@ -94,6 +94,7 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	push_swap(&stack_a, &stack_b, argc);
+    //print_stack(&stack_a);
 	free(args);
 	return (0);
 }

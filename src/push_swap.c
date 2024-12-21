@@ -28,10 +28,10 @@ void	sort_3(t_stack *stack_a)
 		sa(stack_a);
     }
 	else if ((first < second) && (second > third) && (first < third))
-	{
-		rra(stack_a);
-		sa(stack_a);
-	}
+    {
+        rra(stack_a);
+        sa(stack_a);
+    }
 	else if ((first > second) && (second < third) && (first < third))
         sa(stack_a);
 	else if ((first < second) && (second > third))
@@ -99,7 +99,6 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 	int	size;
 
 	(void)argc;
-	compress_coordinates(stack_a);
 	size = ft_lstsize(stack_a->top);
 	while (ft_lstsize(stack_a->top) > size / 3)
 	{
@@ -125,6 +124,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b, int argc)
 {
+	compress_coordinates(stack_a);
 	if (ft_lstsize(stack_a->top) <= 3)
 		sort_3(stack_a);
 	else
