@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/21 16:24:34 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/22 20:18:34 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,21 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
+void	sort_large(t_stack *stack_a, t_stack *stack_b, int min, int max)
 {
 	int	size;
 
-	(void)argc;
 	size = ft_lstsize(stack_a->top);
 	while (ft_lstsize(stack_a->top) > size / 3)
 	{
-		if (stack_a->top->index + 1 > size / 3)
+		if (stack_a->top->index  > size / 3)
 		{
 			if (stack_a->top->index + 1 > 2 * size / 3)
+			{
+				if (stack_a->top->index == max)
+					ra(stack_a);
 				pb(stack_a, stack_b);
+			}
 			else
 			{
 				pb(stack_a, stack_b);
@@ -116,17 +119,27 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int argc)
 			ra(stack_a);
 	}
 	while (ft_lstsize(stack_a->top) > 3)
+	{
+		if (stack_a->top->index == max || stack_a->top->index == min)
+			ra(stack_a);
+		else
 		pb(stack_a, stack_b);
+	}
 	sort_3(stack_a);
 	search_and_push(stack_a, stack_b);
 	sort_a(stack_a);
 }
 
-void	push_swap(t_stack *stack_a, t_stack *stack_b, int argc)
+void	push_swap(t_stack *stack_a, t_stack *stack_b)
 {
+	int min;
+	int max;
+
 	compress_coordinates(stack_a);
+	min = get_min(stack_a);
+	max = get_max(stack_a);
 	if (ft_lstsize(stack_a->top) <= 3)
 		sort_3(stack_a);
 	else
-		sort_large(stack_a, stack_b, argc);
+		sort_large(stack_a, stack_b, min, max);
 }

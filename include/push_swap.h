@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/21 16:26:45 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/22 20:18:50 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_stack
 }					t_stack;
 
 int					ft_lstsize(t_node *lst);
-void				push_swap(t_stack *stack_a, t_stack *stack_b, int argc);
+void				push_swap(t_stack *stack_a, t_stack *stack_b);
 int					ft_atoi(const char *str);
 int					ft_isdigit(int c);
 int					ft_printf(const char *format, ...);
@@ -69,7 +69,8 @@ void				search_sorted4(t_stack *stack_a, t_stack *stack_b, int min,
 void				rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max,
 						int min);
 void				sort_a(t_stack *stack_a);
-void				sort_large(t_stack *stack_a, t_stack *stack_b, int argc);
+void				sort_large(t_stack *stack_a, t_stack *stack_b, int min,
+						int max);
 
 // utils
 int					print_error(void);
