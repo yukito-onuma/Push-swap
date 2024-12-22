@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:13:40 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/21 15:42:40 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/22 21:30:36 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	main(int argc, char **argv)
 		push_stack(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
-	push_swap(&stack_a, &stack_b, argc);
+	push_swap(&stack_a, &stack_b);
     //print_stack(&stack_a);
 	free(args);
 	return (0);
-}
+} // ソート済み対応してないよ！！！！！！！！！！！！！！！

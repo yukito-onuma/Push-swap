@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/22 20:18:34 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/22 21:42:38 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	int	size;
 
 	size = ft_lstsize(stack_a->top);
-	while (ft_lstsize(stack_a->top) > size / 3)
+	while (ft_lstsize(stack_a->top) > size / 3 + 2)
 	{
 		if (stack_a->top->index  > size / 3)
 		{
@@ -123,7 +123,7 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		if (stack_a->top->index == max || stack_a->top->index == min)
 			ra(stack_a);
 		else
-		pb(stack_a, stack_b);
+			pb(stack_a, stack_b);
 	}
 	sort_3(stack_a);
 	search_and_push(stack_a, stack_b);
