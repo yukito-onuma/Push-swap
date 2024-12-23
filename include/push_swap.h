@@ -58,16 +58,11 @@ void				pa(t_stack *stack_a, t_stack *stack_b);
 void				pb(t_stack *stack_a, t_stack *stack_b);
 
 // sort1
-void				search_sorted1(t_stack *stack_a, t_stack *stack_b, int min,
-						int max);
-void				search_sorted2(t_stack *stack_a, t_stack *stack_b, int min,
-						int max);
-void				search_sorted3(t_stack *stack_a, t_stack *stack_b, int min,
-						int max);
-void				search_sorted4(t_stack *stack_a, t_stack *stack_b, int min,
-						int max);
-void				rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max,
-						int min);
+void				search_sorted1(t_stack *stack_a, t_stack *stack_b);
+void				search_sorted2(t_stack *stack_a, t_stack *stack_b);
+void				search_sorted3(t_stack *stack_a, t_stack *stack_b);
+void				search_sorted4(t_stack *stack_a, t_stack *stack_b);
+void				rotate_stack_a(t_stack *stack_a, t_stack *stack_b);
 void				sort_a(t_stack *stack_a);
 void				sort_large(t_stack *stack_a, t_stack *stack_b, int min,
 						int max);

@@ -46,12 +46,10 @@ void	compress_coordinates(t_stack *stack_a)
 	t_node	*compare;
 	int		index;
 
-	// if (!stack_a || !stack_a->top)
-	// 	return ;
 	current = stack_a->top;
 	while (current)
 	{
-		index = 0;
+		index = 1;
 		compare = stack_a->top;
 		while (compare)
 		{
@@ -70,26 +68,20 @@ void	compress_coordinates(t_stack *stack_a)
 
 void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 {
-	int	min;
-	int	max;
 	int	size;
 	int	i;
 
 	size = ft_lstsize(stack_b->top);
-	min = get_min(stack_a);
-	max = get_max(stack_a);
 	i = 0;
 	while (size > i)
 	{
 		init_cost(stack_b);
-		search_sorted1(stack_a, stack_b, min, max);
-		search_sorted2(stack_a, stack_b, min, max);
-		search_sorted3(stack_a, stack_b, min, max);
-		search_sorted4(stack_a, stack_b, min, max);
+		search_sorted1(stack_a, stack_b);
+		search_sorted2(stack_a, stack_b);
+		search_sorted3(stack_a, stack_b);
+		search_sorted4(stack_a, stack_b);
 		minimum_cost(stack_b);
-		min = get_min(stack_a);
-		max = get_max(stack_a);
-		rotate_stack_a(stack_a, stack_b, max, min);
+		rotate_stack_a(stack_a, stack_b);
 		i++;
 	}
 }
@@ -99,31 +91,32 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	int	size;
 
 	size = ft_lstsize(stack_a->top);
-	while (ft_lstsize(stack_a->top) > size / 3 + 2)
+	while (ft_lstsize(stack_a->top) > size / 2 + 1)
 	{
-		if (stack_a->top->index  > size / 3)
+		if (stack_a->top->index == max)
+			ra(stack_a);
+		if (stack_a->top->index >= (3 * size / 4))
+			pb(stack_a, stack_b);
+		else if (stack_a->top->index > size / 2)
 		{
-			if (stack_a->top->index + 1 > 2 * size / 3)
-			{
-				if (stack_a->top->index == max)
-					ra(stack_a);
-				pb(stack_a, stack_b);
-			}
-			else
-			{
-				pb(stack_a, stack_b);
-				rb(stack_b);
-			}
+			pb(stack_a, stack_b);
+			rb(stack_b);
 		}
 		else
 			ra(stack_a);
 	}
+	ft_printf("tugi\n");
 	while (ft_lstsize(stack_a->top) > 3)
 	{
 		if (stack_a->top->index == max || stack_a->top->index == min)
 			ra(stack_a);
-		else
+		else if (stack_a->top->index > size / 4)
 			pb(stack_a, stack_b);
+		else
+		{
+			pb(stack_a, stack_b);
+			rb(stack_b);
+		}
 	}
 	sort_3(stack_a);
 	search_and_push(stack_a, stack_b);

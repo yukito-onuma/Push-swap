@@ -21,28 +21,18 @@ void	update_cost(t_node *current_b, int new_cost, int direction)
 	}
 }
 
-void	process_node(t_node *current_a, t_node *current_b, int count_a, int count_b, int min, int max)
+void	process_node(t_node *current_a, t_node *current_b, int count_a, int count_b)
 {
 	int new_cost;
 
-	if (current_b->index < min || current_b->index > max)// max の時の計算していない
-	{
-		while (current_a->index != min)
-		{
-			current_a = current_a->next;
-			count_a++;
-		}
-		new_cost = 1 + count_a + count_b;
-		update_cost(current_b, new_cost, 0);
-	}
-	else if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
+	if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
 	{
 		new_cost = 1 + count_a + count_b;
 		update_cost(current_b, new_cost, 0);
 	}
 }
 
-void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
+void	search_sorted1(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -57,7 +47,7 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		count_a = 0;
 		while (current_a)
 		{
-			process_node(current_a, current_b, count_a, count_b, min, max);
+			process_node(current_a, current_b, count_a, count_b);
 			count_a++;
 			current_a = current_a->next;
 			if (current_a == stack_a->top)
@@ -72,28 +62,18 @@ void	search_sorted1(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	current_b = stack_b->top;
 }
 
-void	process_node2(t_node *current_a, t_node *current_b, int count_a, int count_b, int min, int max)
+void	process_node2(t_node *current_a, t_node *current_b, int count_a, int count_b)
 {
 	int new_cost;
 
-	if (current_b->index < min || current_b->index > max)// max の時の計算していない
-	{
-		while (current_a->index != min)
-		{
-			current_a = current_a->next;
-			count_a++;
-		}
-		new_cost = 1 + count_a + count_b;
-		update_cost(current_b, new_cost, 1);
-	}
-	else if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
+	if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
 	{
 		new_cost = 1 + count_a + count_b;
 		update_cost(current_b, new_cost, 1);
 	}
 }
 
-void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
+void	search_sorted2(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -108,7 +88,7 @@ void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		count_a = 0;
 		while (current_a)
 		{
-			process_node2(current_a, current_b, count_a, count_b, min, max);
+			process_node2(current_a, current_b, count_a, count_b);
 			count_a++;
 			current_a = current_a->next;
 			if (current_a == stack_a->top)
@@ -122,28 +102,18 @@ void	search_sorted2(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	current_b = stack_b->top;
 }
 
-void	process_node3(t_node *current_a, t_node *current_b, int count_a, int count_b, int min, int max)
+void	process_node3(t_node *current_a, t_node *current_b, int count_a, int count_b)
 {
 	int new_cost;
 
-	if (current_b->index < min || current_b->index > max) // max の時の計算していない
-	{
-		while (current_a->index != min)
-		{
-			current_a = current_a->next;
-			count_a++;
-		}
-		new_cost = 1 + count_a +count_b;
-		update_cost(current_b, new_cost, 1);
-	}
-	else if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
+	if (current_a->prev->index < current_b->index && current_b->index < current_a->index)
 	{
 		new_cost = 1 + count_a + count_b;
 		update_cost(current_b, new_cost, 0);
 	}
 }
 
-void	search_sorted3(t_stack *stack_a, t_stack *stack_b, int min, int max)
+void	search_sorted3(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -158,7 +128,7 @@ void	search_sorted3(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		count_a = 0;
 		while (current_a)
 		{
-			process_node3(current_a, current_b, count_a, count_b, min, max);
+			process_node3(current_a, current_b, count_a, count_b);
 			count_a++;
 			current_a = current_a->prev;
 			if (current_a == stack_a->top)
@@ -172,7 +142,7 @@ void	search_sorted3(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	current_b = stack_b->top;
 }
 
-void	search_sorted4(t_stack *stack_a, t_stack *stack_b, int min, int max)
+void	search_sorted4(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -187,7 +157,7 @@ void	search_sorted4(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		count_a = 0;
 		while (current_a)
 		{
-			process_node2(current_a, current_b, count_a, count_b, min, max);
+			process_node2(current_a, current_b, count_a, count_b);
 			count_a++;
 			current_a = current_a->prev;
 			if (current_a == stack_a->top)

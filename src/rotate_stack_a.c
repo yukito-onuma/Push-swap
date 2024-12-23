@@ -40,28 +40,11 @@ void	define_ra_rra(t_stack *stack_a, t_stack *stack_b, int size)
 	}
 }
 
-void	rotate_stack_a(t_stack *stack_a, t_stack *stack_b, int max, int min)
+void	rotate_stack_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int		size;
 
 	size = ft_lstsize(stack_a->top);
-	if (stack_b->top->index < min || max < stack_b->top->index)
-	{
-		if (stack_b->top->index < min)
-		{
-			while (stack_a->top->index != min)
-                ra(stack_a);
-			pa(stack_b, stack_a);
-		}
-		else
-		{
-			while (stack_a->top->index != min)
-                ra(stack_a);
-			pa(stack_b, stack_a);
-			ra(stack_a);
-		}
-		return ;
-	}
 	define_ra_rra(stack_a, stack_b, size);
 	pa(stack_b, stack_a);
 }
