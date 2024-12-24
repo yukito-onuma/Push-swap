@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/24 14:06:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/24 15:26:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ void				calc_cost_prev(t_stack *stack_a, t_stack *stack_b, int min,
 						int max);
 void				define_ra_rra(t_stack *stack_a, t_stack *stack_b, int size);
 
-void	print_stack(t_stack *stack);
-
+int					check_is_sorted(t_stack *stack_a);
 #endif

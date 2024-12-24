@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/24 14:48:02 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/24 16:01:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,19 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int min, int max)
 	search_and_push(stack_a, stack_b);
 	sort_a(stack_a);
 }
+int check_is_sorted(t_stack *stack_a)
+{
+	t_node	*current;
+
+	current = stack_a->top;
+	while (current->next != stack_a->top)
+	{
+		if (current->index > current->next->index)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
 
 void	push_swap(t_stack *stack_a, t_stack *stack_b)
 {
@@ -128,6 +141,11 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 	int max;
 
 	compress_coordinates(stack_a);
+	if (check_is_sorted(stack_a) == 1)
+	{
+		ft_printf("stack_a is sorted\n");
+		return ;
+	}
 	min = get_min(stack_a);
 	max = get_max(stack_a);
 	if (ft_lstsize(stack_a->top) <= 3)

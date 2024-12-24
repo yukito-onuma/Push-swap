@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:13:40 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/22 21:30:36 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/24 16:04:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,6 @@ int	check_input(char **argv, int *args)
 	return (0);
 }
 
-void	print_stack(t_stack *stack)
-{
-	t_node	*current;
-
-	current = stack->top;
-	while (current != stack->top->prev)
-	{
-		printf("%d, %d\n", current->value, current->index);
-		current = current->next;
-	}
-    printf("%d, %d\n", stack->top->prev->value, stack->top->prev->index);
-}
-
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -76,25 +63,27 @@ int	main(int argc, char **argv)
 	t_stack	stack_a;
 	t_stack	stack_b;
 
-	args = malloc((argc - 1) * sizeof(int));
-	if (args == NULL)
-		return (0);
-	if (check_input(argv, args) == 1)
-		return (print_error());
-	if (!check_duplicates(args, argc - 1))
+	if (argc > 1)
 	{
+		args = malloc((argc - 1) * sizeof(int));
+		if (args == NULL)
+			return (0);
+		if (check_input(argv, args) == 1)
+			return (print_error());
+		if (!check_duplicates(args, argc - 1))
+		{
+			free(args);
+			return (print_error());
+		}
+		i = 1;
+		stack_init(&stack_a, &stack_b);
+		while (argv[i])
+		{
+			push_stack(&stack_a, ft_atoi(argv[i]));
+			i++;
+		}
+		push_swap(&stack_a, &stack_b);
 		free(args);
-		return (print_error());
 	}
-	i = 1;
-	stack_init(&stack_a, &stack_b);
-	while (argv[i])
-	{
-		push_stack(&stack_a, ft_atoi(argv[i]));
-		i++;
-	}
-	push_swap(&stack_a, &stack_b);
-    //print_stack(&stack_a);
-	free(args);
 	return (0);
-} // ソート済み対応してないよ！！！！！！！！！！！！！！！
+}
