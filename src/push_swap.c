@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:20:08 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/22 22:00:26 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/24 14:08:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	sort_large(t_stack *stack_a, t_stack *stack_b, int min, int max)
 		else
 			ra(stack_a);
 	}
-	ft_printf("tugi\n");
 	while (ft_lstsize(stack_a->top) > 3)
 	{
 		if (stack_a->top->index == max || stack_a->top->index == min)
