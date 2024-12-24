@@ -6,11 +6,16 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:13:40 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/24 16:04:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/24 22:33:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+__attribute__((destructor))
+static void destructor() {
+	system("leaks -q a.out");
+}
 
 bool	is_valid_input(char *str)
 {
@@ -84,6 +89,8 @@ int	main(int argc, char **argv)
 		}
 		push_swap(&stack_a, &stack_b);
 		free(args);
+		free_stack(&stack_a, &stack_b);
 	}
 	return (0);
 }
+
