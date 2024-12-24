@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:06:04 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/21 16:00:13 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/24 14:00:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	sort_a(t_stack *stack_a)
 	int half_size;
 
 	half_size = ft_lstsize(stack_a->top) / 2;
-	while (stack_a->top->index != 0)
+	while (stack_a->top->index != 1)
 	{
 		if (stack_a->top->index > half_size)
 			ra(stack_a);
