@@ -14,20 +14,20 @@
 
 int	current_b_next(t_stack *stack_b, t_node **current_b, int *count_b)
 {
-    (*count_b)++;
-    *current_b = (*current_b)->next;
-    if (*current_b == stack_b->top)
-        return (1);
-    return (0);
+	(*count_b)++;
+	*current_b = (*current_b)->next;
+	if (*current_b == stack_b->top)
+		return (1);
+	return (0);
 }
 
 int	current_b_prev(t_stack *stack_b, t_node **current_b, int *count_b)
 {
-    (*count_b)++;
-    *current_b = (*current_b)->prev;
-    if (*current_b == stack_b->top)
-        return (1);
-    return (0);
+	(*count_b)++;
+	*current_b = (*current_b)->prev;
+	if (*current_b == stack_b->top)
+		return (1);
+	return (0);
 }
 
 int	check(char **argv, int *args, int argc)
