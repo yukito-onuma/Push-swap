@@ -76,10 +76,10 @@ void	search_and_push(t_stack *stack_a, t_stack *stack_b)
 	while (size > i)
 	{
 		init_cost(stack_b);
-		search_sorted1(stack_a, stack_b);
-		search_sorted2(stack_a, stack_b);
-		search_sorted3(stack_a, stack_b);
-		search_sorted4(stack_a, stack_b);
+		calculate_cost1(stack_a, stack_b);
+		calculate_cost2(stack_a, stack_b);
+		calculate_cost3(stack_a, stack_b);
+		calculate_cost4(stack_a, stack_b);
 		minimum_cost(stack_b);
 		rotate_stack_a(stack_a, stack_b);
 		i++;
@@ -142,10 +142,7 @@ void	push_swap(t_stack *stack_a, t_stack *stack_b)
 
 	compress_coordinates(stack_a);
 	if (check_is_sorted(stack_a) == 1)
-	{
-		ft_printf("stack_a is sorted\n");
 		return ;
-	}
 	min = get_min(stack_a);
 	max = get_max(stack_a);
 	if (ft_lstsize(stack_a->top) <= 3)

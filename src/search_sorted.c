@@ -32,7 +32,7 @@ void	process_node(t_node *current_a, t_node *current_b, int count_a, int count_b
 	}
 }
 
-void	search_sorted1(t_stack *stack_a, t_stack *stack_b)
+void	calculate_cost1(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -73,7 +73,7 @@ void	process_node2(t_node *current_a, t_node *current_b, int count_a, int count_
 	}
 }
 
-void	search_sorted2(t_stack *stack_a, t_stack *stack_b)
+void	calculate_cost2(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -113,7 +113,7 @@ void	process_node3(t_node *current_a, t_node *current_b, int count_a, int count_
 	}
 }
 
-void	search_sorted3(t_stack *stack_a, t_stack *stack_b)
+void	calculate_cost3(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
@@ -142,7 +142,7 @@ void	search_sorted3(t_stack *stack_a, t_stack *stack_b)
 	current_b = stack_b->top;
 }
 
-void	search_sorted4(t_stack *stack_a, t_stack *stack_b)
+void	calculate_cost4(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*current_a;
 	t_node	*current_b;
