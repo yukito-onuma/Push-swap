@@ -12,48 +12,38 @@
 
 #include "../include/push_swap.h"
 
-void    sa(t_stack *stack_a)
+void	sa(t_stack *stack_a)
 {
-    t_node  *a;
-    t_node  *b;
+	t_node	*a;
+	t_node	*b;
 
-    a = stack_a->top;
-    b = a->next;
-
-    a->next = b->next;
-    a->next->prev = a;
-
-    b->prev = a->prev;
-    b->prev->next = b;
-
-    b->next = a;
-    a->prev = b;
-
-    stack_a->top = b;
-
-    ft_printf("sa\n");
+	a = stack_a->top;
+	b = a->next;
+	a->next = b->next;
+	a->next->prev = a;
+	b->prev = a->prev;
+	b->prev->next = b;
+	b->next = a;
+	a->prev = b;
+	stack_a->top = b;
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack *stack_b)
 {
-    t_node  *a;
-    t_node  *b;
+	t_node	*a;
+	t_node	*b;
 
-    a = stack_b->top;
-    b = a->next;
-
-    a->next = b->next;
-    a->next->prev = a;
-
-    b->prev = a->prev;
-    b->prev->next = b;
-
-    b->next = a;
-    a->prev = b;
-
-    stack_b->top = b;
-
-    ft_printf("sb\n");
+	a = stack_b->top;
+	b = a->next;
+	a->next = b->next;
+	a->next->prev = a;
+	b->prev = a->prev;
+	b->prev->next = b;
+	b->next = a;
+	a->prev = b;
+	stack_b->top = b;
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack *stack_a, t_stack *stack_b)

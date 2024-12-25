@@ -25,7 +25,7 @@ int	get_min(t_stack *stack_a)
 			min = current->index;
 		current = current->next;
 		if (current == stack_a->top)
-			break;
+			break ;
 	}
 	return (min);
 }
@@ -92,7 +92,7 @@ void	init_cost(t_stack *stack_b)
 
 void	sort_a(t_stack *stack_a)
 {
-	int half_size;
+	int	half_size;
 
 	half_size = ft_lstsize(stack_a->top) / 2;
 	while (stack_a->top->index != 1)

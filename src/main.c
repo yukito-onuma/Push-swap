@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:13:40 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/24 22:33:05 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/25 14:49:09 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-__attribute__((destructor))
-static void destructor() {
-	system("leaks -q a.out");
-}
+// __attribute__((destructor)) static void destructor()
+// {
+// 	system("leaks -q a.out");
+// }
 
 bool	is_valid_input(char *str)
 {
@@ -71,14 +71,10 @@ int	main(int argc, char **argv)
 	if (argc > 1)
 	{
 		args = malloc((argc - 1) * sizeof(int));
-		if (args == NULL)
-			return (0);
-		if (check_input(argv, args) == 1)
-			return (print_error());
-		if (!check_duplicates(args, argc - 1))
+		if (check(argv, args, argc) == 1)
 		{
 			free(args);
-			return (print_error());
+			return (1);
 		}
 		i = 1;
 		stack_init(&stack_a, &stack_b);
@@ -93,4 +89,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-

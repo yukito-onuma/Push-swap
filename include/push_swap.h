@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/24 22:10:53 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/25 14:21:47 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ void				calculate_cost1(t_stack *stack_a, t_stack *stack_b);
 void				calculate_cost2(t_stack *stack_a, t_stack *stack_b);
 void				calculate_cost3(t_stack *stack_a, t_stack *stack_b);
 void				calculate_cost4(t_stack *stack_a, t_stack *stack_b);
+void				process_node(t_node *current_a, t_node *current_b,
+						int count_a, int count_b);
+void				process_node2(t_node *current_a, t_node *current_b,
+						int count_a, int count_b);
+void				process_node3(t_node *current_a, t_node *current_b,
+						int count_a, int count_b);
 void				sort_a(t_stack *stack_a);
 void				sort_large(t_stack *stack_a, t_stack *stack_b, int min,
 						int max);
@@ -86,6 +92,13 @@ void				calc_cost_prev(t_stack *stack_a, t_stack *stack_b, int min,
 void				define_ra_rra(t_stack *stack_a, t_stack *stack_b, int size);
 
 int					check_is_sorted(t_stack *stack_a);
-void                free_stack(t_stack *stack_a, t_stack *stack_b);
+void				free_stack(t_stack *stack_a, t_stack *stack_b);
+
+// utils3
+int					current_b_next(t_stack *stack_b, t_node **current_b,
+						int *count_b);
+int					current_b_prev(t_stack *stack_b, t_node **current_b,
+						int *count_b);
+int					check(char **argv, int *args, int argc);
 
 #endif

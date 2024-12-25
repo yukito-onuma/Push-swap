@@ -6,12 +6,12 @@
 #    By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 18:18:07 by yonuma            #+#    #+#              #
-#    Updated: 2024/12/15 18:38:15 by yonuma           ###   ########.fr        #
+#    Updated: 2024/12/25 14:56:03 by yonuma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 NAME = push_swap.a
 EXEC = push_swap
 SRCS = src/main.c \
@@ -23,7 +23,9 @@ SRCS = src/main.c \
 	   src/sort1.c \
 	   src/sort2.c \
 	   src/utils.c \
-	   src/utils2.c
+	   src/utils2.c \
+	   src/utils3.c \
+	   src/calculate_cost.c
 	   
 LIBFT_DIR = libft
 PRINTF_DIR = printf
