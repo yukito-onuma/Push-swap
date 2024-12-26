@@ -34,10 +34,10 @@ static long	convert_to_long(const char *str, int sign)
 	return (result * sign);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int	sign;
-	int	result;
+	long	sign;
+	long	result;
 
 	sign = 1;
 	result = 0;
