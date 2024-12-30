@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/25 14:21:47 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/30 13:27:32 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,8 @@ int					current_b_next(t_stack *stack_b, t_node **current_b,
 int					current_b_prev(t_stack *stack_b, t_node **current_b,
 						int *count_b);
 int					check(char **argv, int *args, int argc);
+
+// chunk_sort
+void				chunk_sort(t_stack *stack, t_stack *stack_b);
 
 #endif

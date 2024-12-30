@@ -6,7 +6,7 @@
 #    By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 18:18:07 by yonuma            #+#    #+#              #
-#    Updated: 2024/12/25 14:56:03 by yonuma           ###   ########.fr        #
+#    Updated: 2024/12/30 13:27:57 by yonuma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = src/main.c \
 	   src/utils.c \
 	   src/utils2.c \
 	   src/utils3.c \
+	   src/chunk_sort.c \
 	   src/calculate_cost.c
 	   
 LIBFT_DIR = libft
