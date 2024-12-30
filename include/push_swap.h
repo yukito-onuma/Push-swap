@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/30 13:27:32 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/30 19:50:51 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void				process_node3(t_node *current_a, t_node *current_b,
 void				sort_a(t_stack *stack_a);
 void				sort_large(t_stack *stack_a, t_stack *stack_b, int min,
 						int max);
+void				sort_3(t_stack *stack_a);
 
 // utils
 int					print_error(void);
@@ -101,7 +102,7 @@ int					current_b_prev(t_stack *stack_b, t_node **current_b,
 						int *count_b);
 int					check(char **argv, int *args, int argc);
 
-// chunk_sort
-void				chunk_sort(t_stack *stack, t_stack *stack_b);
+// sort_small
+void				sort_small(t_stack *stack_a, t_stack *stack_b);
 
 #endif
