@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:13:40 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/30 19:52:50 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/30 20:35:35 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,22 @@ bool	is_int_range(char *str)
 {
 	long	num;
 
-	num = ft_atoi(str);
+	num = ft_atol(str);
 	if (num < INT_MIN || num > INT_MAX)
 		return (false);
 	return (true);
 }
 
-int	check_input(char **argv, int *args)
+int	check_input(char **argv, int *args, int argc)
 {
 	int	i;
 
-	i = 0;
-	while (argv[i + 1])
+	i = 1;
+	while (i < argc)
 	{
-		if (!is_valid_input(argv[i + 1]) || !is_int_range(argv[i + 1]))
+		if (!is_valid_input(argv[i]) || !is_int_range(argv[i]))
 			return (1);
-		args[i] = ft_atoi(argv[i + 1]);
+		args[i - 1] = ft_atoi(argv[i]);
 		i++;
 	}
 	return (0);

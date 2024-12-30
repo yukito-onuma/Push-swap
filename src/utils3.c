@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 13:20:36 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/25 15:01:29 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/30 20:38:43 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check(char **argv, int *args, int argc)
 {
 	if (args == NULL)
 		return (0);
-	if (check_input(argv, args) == 1)
+	if (check_input(argv, args, argc) == 1)
 		return (print_error());
 	if (!check_duplicates(args, argc - 1))
 		return (print_error());

@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:16:37 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/30 19:50:51 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/30 20:38:32 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_stack
 int					ft_lstsize(t_node *lst);
 void				push_swap(t_stack *stack_a, t_stack *stack_b);
 int					ft_atoi(const char *str);
+long				ft_atol(const char *str);
 int					ft_isdigit(int c);
 int					ft_printf(const char *format, ...);
 void				push_stack(t_stack *stack, int value);
@@ -83,7 +84,7 @@ int					get_min(t_stack *stack_a);
 int					get_max(t_stack *stack_a);
 void				init_cost(t_stack *stack_b);
 void				minimum_cost(t_stack *stack_b);
-int					check_input(char **argv, int *args);
+int					check_input(char **argv, int *args, int argc);
 
 // utils2
 void				calc_cost_next(t_stack *stack_a, t_stack *stack_b, int min,

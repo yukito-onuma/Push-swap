@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 16:51:07 by tuchikaw          #+#    #+#             */
-/*   Updated: 2024/11/22 18:38:30 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/30 20:37:30 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_stack
 
 // libc
 int					ft_atoi(const char *str);
+long				ft_atol(const char *str);
 void				ft_bzero(void *b, size_t len);
 void				*ft_calloc(size_t n, size_t size);
 int					ft_isalnum(int c);

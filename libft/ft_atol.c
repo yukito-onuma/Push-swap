@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 16:00:21 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/30 20:36:52 by yonuma           ###   ########.fr       */
+/*   Created: 2024/12/30 20:37:08 by yonuma            #+#    #+#             */
+/*   Updated: 2024/12/30 20:37:22 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static long	convert_to_long(const char *str, int sign)
 	return (result * sign);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	sign;
-	int	result;
+	int		sign;
+	long	result;
 
 	sign = 1;
 	result = 0;
@@ -49,15 +49,6 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		str++;
 	}
-	result = (int)convert_to_long(str, sign);
+	result = convert_to_long(str, sign);
 	return (result);
 }
-
-
-// int	main(void)
-// {
-// 	printf("Input: '+0'\n");
-// 	printf("Original: %d\n", atoi("+0"));
-// 	printf("Custom  : %d\n", ft_atoi("+0"));
-// 	return (0);
-// }

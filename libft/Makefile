@@ -6,7 +6,7 @@
 #    By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/11/22 18:41:31 by yonuma           ###   ########.fr        #
+#    Updated: 2024/12/30 20:37:40 by yonuma           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
 SRCS = ft_isascii.c \
 	   ft_isprint.c \
+	   ft_atol.c \
 	   ft_memmove.c \
 	   ft_strchr.c \
 	   ft_strlcpy.c \
