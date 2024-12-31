@@ -6,7 +6,7 @@
 /*   By: yonuma <yonuma@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 20:31:36 by yonuma            #+#    #+#             */
-/*   Updated: 2024/12/25 12:52:58 by yonuma           ###   ########.fr       */
+/*   Updated: 2024/12/31 17:38:03 by yonuma           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_error(void)
 {
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	return (1);
 }
 
